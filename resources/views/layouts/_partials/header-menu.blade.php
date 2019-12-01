@@ -4,21 +4,16 @@
         <div class="row">
           <div class="col-lg-7">
             <div class="float-left">
-              <p>Phone: +01 256 25 235</p>
-              <p>email: info@eiser.com</p>
+              <!-- <p>Phone: +0123456789</p> -->
+              <p>Support email: jeremy.leonardo@binus.ac.id</p>
             </div>
           </div>
           <div class="col-lg-5">
             <div class="float-right">
               <ul class="right_side">
                 <li>
-                  <a href="cart.html">
-                    gift card
-                  </a>
-                </li>
-                <li>
                   <a href="tracking.html">
-                    track order
+                    Booking Status
                   </a>
                 </li>
                 <li>
@@ -51,7 +46,7 @@
               <div class="col-lg-7 pr-0">
                 <ul class="nav navbar-nav center_nav pull-right">
                   <li class="nav-item active">
-                    <a class="nav-link" href="../public/">Home</a>
+                    <a class="nav-link" href="/">Home</a>
                   </li>
                   <li class="nav-item submenu dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
