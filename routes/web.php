@@ -12,4 +12,8 @@
 */
 
 // Route::get('/welcome', function () {return view('welcome');});
-Route::get('/', 'homeController@index');
+Route::get('/', 'HomeController@index')->name('homePage');
+Route::get('/login', 'Auth\LoginController@index')->name('loginPage');
+Route::get('/logout', 'Auth\LoginController@logout');
+Route::get('/register/user', 'Auth\RegisterUserController@index')->name('registerUserPage');
+Route::post('/register/user', 'Auth\RegisterUserController@create');

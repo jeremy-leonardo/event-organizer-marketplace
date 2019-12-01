@@ -6,10 +6,10 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class Organizer extends Authenticatable
 {
-    protected $table = 'user';
-    protected $primaryKey = 'user_id';
+    protected $table = 'organizer';
+    protected $primaryKey = 'organizer_id';
     public $timestamps = true;
     use Notifiable;
 
@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'user_name', 'user_email', 'user_password', 'user_phone_number',
+        'organizer_name', 'organizer_email', 'organizer_password', 'organizer_type_id', 'organizer_is_active', 'organizer_phone_number', 'city_id'
     ];
 
     /**
@@ -28,7 +28,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'user_password', 'remember_token',
+        'organizer_password', 'remember_token', 
     ];
 
     /**
