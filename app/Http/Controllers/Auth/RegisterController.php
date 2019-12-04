@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -38,6 +39,8 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->middleware('guest:user');
+        $this->middleware('guest:organizer');
     }
 
     /**
@@ -46,12 +49,20 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function userValidator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'user_name' => ['required', 'string', 'max:255'],
+            'user_email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'user_password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+    }
+    protected function organizerValidator(array $data)
+    {
+        return Validator::make($data, [
+            'organizer_name' => ['required', 'string', 'max:255'],
+            'organizer_email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'organizer_password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
@@ -61,12 +72,40 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function createUser(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        $this->userValidator($request->all())->validate();
+        $user = User::create([
+            'user_name' => $request['name'],
+            'user_email' => $request['email'],
+            'user_password' => bcrypt($request['password']),
         ]);
+        return redirect()->intended('/login');
     }
+
+    protected function createOrganizer(Request $request)
+    {
+        $this->organizerValidator($request->all())->validate();
+        $organizer = Organizer::create([
+            'organizer_name' => $request['name'],
+            'organizer_email' => $request['email'],
+            'organizer_password' => bcrypt($request['password']),
+        ]);
+        return redirect()->intended('/login');
+    }
+
+    public function index(){
+        return view('auth.register.index', ['register_as' => '']);
+    }
+
+    public function showUserRegister()
+    {
+        return view('auth.register.index', ['register_as' => 'user']);
+    }
+
+    public function showOrganizerRegister()
+    {
+        return view('auth.register.index', ['register_as' => 'organizer']);
+    }
+
 }

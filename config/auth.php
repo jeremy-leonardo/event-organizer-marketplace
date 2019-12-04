@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'user',
+        'guard' => 'user',
+        'passwords' => 'users',
     ],
 
     /*
@@ -36,16 +36,19 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'user' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
-        'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
-            'hash' => false,
+        'organizer' => [
+            'driver' => 'session',
+            'provider' => 'organizers',
         ],
+        // 'api' => [
+        //     'driver' => 'token',
+        //     'provider' => 'users',
+        //     'hash' => false,
+        // ],
     ],
 
     /*
@@ -66,14 +69,14 @@ return [
     */
 
     'providers' => [
-        'user' => [
+        'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
             // 'table' => 'user',
         ],
-        'organizer' => [
-            'driver' => 'database',
-            'model' => App\Organizer::class ,
+        'organizers' => [
+            'driver' => 'eloquent',
+            'model' => App\Organizer::class,
             // 'table' => 'organizer',
         ],
     ],
@@ -94,8 +97,14 @@ return [
     */
 
     'passwords' => [
-        'user' => [
-            'provider' => 'user',
+        'users' => [
+            'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'organizers' => [
+            'provider' => 'organizers',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

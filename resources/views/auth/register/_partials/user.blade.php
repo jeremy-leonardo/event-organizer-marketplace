@@ -8,15 +8,13 @@
             <h5 class="card-title">Register As User</h5>
 
             <!-- LOGIN FORM -->
-            <form method="POST" action="/register/user">
+            <form method="POST" action="/user/register">
                 {{ csrf_field() }}
                 <meta name="csrf-token" content="{{ Session::token() }}">  
                 <div class="form-group">
                     <label for="email">Email address</label>
                     <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp"
                         placeholder="Email">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                        else.</small>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
@@ -30,10 +28,6 @@
                     <label for="phonenumber">Phone Number</label>
                     <input type="text" name="phonenumber" class="form-control" id="phonenumber" placeholder="Phone Number">
                 </div>
-                <!-- <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div> -->
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>

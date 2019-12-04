@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Organizer extends Authenticatable
 {
+    protected $guard = 'organizer';
     protected $table = 'organizer';
     protected $primaryKey = 'organizer_id';
     public $timestamps = true;
