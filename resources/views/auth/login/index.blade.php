@@ -19,6 +19,10 @@
             Login as Organizer
         </button>
 
+        <h4 class="text-uppercase p-5" style="color: #80d292;">
+            New here? <a href="{{url('/')}}/register" style="color:white;">Sign up now</a>
+        </h4>
+
     </div>
 
     @endif

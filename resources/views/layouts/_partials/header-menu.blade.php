@@ -25,6 +25,11 @@
                   Contact Us
                 </a>
               </li>
+              <li>
+                <a href="{{url('/')}}/logout">
+                  Log out
+                </a>
+              </li>
             </ul>
           </div>
         </div>
