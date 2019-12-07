@@ -14,10 +14,16 @@
         <button id="reg-user-btn" type="button" class="main_btn" onclick="">
             Register as User
         </button>
+
         <h4 class="text-uppercase pt-4 pb-4" style="color: white;">or</h4>
+
         <button id="reg-organizer-btn" type="button" class="main_btn" onclick="">
             Register as Organizer
         </button>
+
+        <h4 class="text-uppercase p-5" style="color: #80d292;">
+            Already have an account? <a href="{{url('/')}}/login" style="color:white;">Log in now</a>
+        </h4>
 
     </div>
 
