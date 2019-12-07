@@ -25,17 +25,16 @@
                 </div>
             </form>
             <!-- END LOGIN FORM -->
-            <!-- ERROR HANDLE -->
+            <!-- ERROR ALERT BOX -->
             @if($errors->any())
-            <div class="row collapse">
-                <ul class="alert-box warning radius">
-                    @foreach($errors->all() as $error)
-                    <li> {{ $error }} </li>
-                    @endforeach
-                </ul>
+            <div class="alert alert-danger alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                @foreach($errors->all() as $error)
+                    {{ $error }}<br>
+                @endforeach
             </div>
             @endif
-            <!-- END ERROR HANDLE -->
+            <!-- END ERROR ALERT BOX -->
         </div>
     </div>
     <div class="col-2"></div>

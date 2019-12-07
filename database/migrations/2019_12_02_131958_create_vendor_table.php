@@ -15,9 +15,9 @@ class CreateVendorTable extends Migration
     {
         Schema::create('vendor', function (Blueprint $table) {
             $table->increments('vendor_id');
-            $table->string('vendor_email', 100)->unique();
-            $table->string('vendor_password', 100);
-            $table->string('vendor_name', 100);
+            $table->string('vendor_email', 255)->unique();
+            $table->string('vendor_password', 255);
+            $table->string('vendor_name', 255);
             $table->bigInteger('vendor_type_id')->unsigned()->default(1);
             $table->foreign('vendor_type_id')->references('vendor_type_id')->on('vendor_type');
             $table->bigInteger('city_id')->unsigned()->default(1);

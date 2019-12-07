@@ -68,7 +68,7 @@ class LoginController extends Controller
 
             return redirect()->intended('/');
         }
-        return back()->withInput($request->only('user_email', 'remember'));
+        return back()->withInput($request->only('user_email', 'remember'))->withErrors(['Failed to log in']);
     }
 
     public function loginVendor(Request $request)
@@ -81,7 +81,7 @@ class LoginController extends Controller
 
             return redirect()->intended('/');
         }
-        return back()->withInput($request->only('vendor_email', 'remember'));
+        return back()->withInput($request->only('vendor_email', 'remember'))->withErrors(['Failed to log in']);
     }
 
     public function index()

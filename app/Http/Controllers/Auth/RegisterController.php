@@ -53,17 +53,21 @@ class RegisterController extends Controller
     protected function userValidator(array $data)
     {
         return Validator::make($data, [
-            'user_name' => ['required', 'string', 'max:255'],
-            'user_email' => ['required', 'string', 'email', 'max:255', 'unique:user'],
-            'user_password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:user,user_email'],
+            'password' => ['required', 'string', 'min:6', 'max:64'],
+            'password-confirmation' => ['required', 'same:password'],
+            'phone-number' => ['required', 'numeric', 'min:3', 'max:20', 'unique:user,user_phone_number'],
         ]);
     }
     protected function vendorValidator(array $data)
     {
         return Validator::make($data, [
-            'vendor_name' => ['required', 'string', 'max:255'],
-            'vendor_email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'vendor_password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:vendor,vendor_email'],
+            'password' => ['required', 'string', 'min:6', 'max:64'],
+            'password-confirmation' => ['required', 'same:password'],
+            'phone-number' => ['required', 'numeric', 'min:3', 'max:20', 'unique:vendor,vendor_phone_number'],
         ]);
     }
 
@@ -75,20 +79,19 @@ class RegisterController extends Controller
      */
     protected function createUser(Request $request)
     {
-        // $this->userValidator($request->all())->validate();
+        $this->userValidator($request->all())->validate();
         $user = User::create([
             'user_name' => $request['name'],
             'user_email' => $request['email'],
             'user_password' => bcrypt($request['password']),
             'user_phone_number' => $request['phone-number'],
         ]);
-        // $user->save();
         return redirect()->intended('/login');
     }
 
     protected function createVendor(Request $request)
     {
-        // $this->vendorValidator($request->all())->validate();
+        $this->vendorValidator($request->all())->validate();
         $vendor = Vendor::create([
             'vendor_name' => $request['name'],
             'vendor_email' => $request['email'],
