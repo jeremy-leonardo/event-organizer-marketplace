@@ -79,7 +79,7 @@ class RegisterController extends Controller
             'user_name' => $request['name'],
             'user_email' => $request['email'],
             'user_password' => bcrypt($request['password']),
-            'user_phone_number' => $request['phonenumber'],
+            'user_phone_number' => $request['phone-number'],
         ]);
         // $user->save();
         return redirect()->intended('/login');

@@ -41,6 +41,13 @@ class LoginController extends Controller
         $this->middleware('guest:organizer')->except('logout');
     }
 
+    public function validateCredentials(UserContract $user, array $credentials)
+    {
+        $plain = $credentials['password'];
+
+        return $this->hasher->check($plain, $user->getAuthPassword());
+    }
+
     public function logout(Request $request) {
         // $user = Auth()->user();
         if(Auth::check('user') || Auth::check('organizer')){
@@ -51,16 +58,15 @@ class LoginController extends Controller
 
     public function loginUser(Request $request)
     {
-        $this->validate($request, [
-            'email'   => 'required|email',
-            'password' => 'required|min:6'
-        ]);
-
-        if (Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+        // $this->validate($request, [
+        //     'email'   => 'required|email',
+        //     'password' => 'required|min:6'
+        // ]);
+        if (Auth::guard('user')->attempt(['user_email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
             return redirect()->intended('/');
         }
-        return back()->withInput($request->only('email', 'remember'));
+        return back()->withInput($request->only('user_email', 'remember'));
     }
 
     public function index()

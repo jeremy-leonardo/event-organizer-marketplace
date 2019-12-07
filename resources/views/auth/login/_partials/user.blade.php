@@ -5,10 +5,10 @@
     <div class="col-2"></div>
     <div class="col-8 card">
         <div class="card-body">
-            <h5 class="card-title">Register As User</h5>
+            <h5 class="card-title">Login As User</h5>
 
             <!-- LOGIN FORM -->
-            <form method="POST" action="/user/register">
+            <form method="POST" action="/user/login">
                 {{ csrf_field() }}
                 <meta name="csrf-token" content="{{ Session::token() }}">  
                 <div class="form-group">
@@ -19,14 +19,6 @@
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" name="password" class="form-control" id="password" placeholder="Password">
-                </div>
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Name">
-                </div>
-                <div class="form-group">
-                    <label for="phone-number">Phone Number</label>
-                    <input type="text" name="phone-number" class="form-control" id="phone-number" placeholder="Phone Number">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Submit</button>

@@ -19,9 +19,9 @@ Route::get('/', 'HomeController@index')->name('homePage');
 // LOGIN
 Route::get('/login', 'Auth\LoginController@index')->name('loginPage');
 Route::get('/user/login', 'Auth\LoginController@showUserLogin')->name('userLoginPage');
-Route::post('/user/login', 'Auth\LoginController@login');
+Route::post('/user/login', 'Auth\LoginController@loginUser');
 Route::get('/organizer/login', 'Auth\LoginController@showOrganizerLogin')->name('organizerLoginPage');
-Route::post('/organizer/login', 'Auth\LoginController@login');
+Route::post('/organizer/login', 'Auth\LoginController@loginOrganizer');
 
 // REGISTER
 Route::get('/register', 'Auth\RegisterController@index')->name('registerPage');
