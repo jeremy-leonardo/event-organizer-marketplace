@@ -13,10 +13,10 @@ class CreateOrganizerTable extends Migration
      */
     public function up()
     {
-        Schema::create('organizers', function (Blueprint $table) {
+        Schema::create('organizer', function (Blueprint $table) {
             $table->increments('organizer_id');
             $table->string('organizer_email', 100)->unique();
-            $table->string('organizer_password');
+            $table->string('organizer_password', 100);
             $table->string('organizer_name', 100);
             $table->foreign('organizer_type_id')->references('organizer_type_id')->on('organizer_type');
             $table->foreign('city_id')->references('city_id')->on('city');
@@ -34,6 +34,6 @@ class CreateOrganizerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Organizers');
+        Schema::dropIfExists('organizer');
     }
 }

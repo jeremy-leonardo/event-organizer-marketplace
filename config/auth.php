@@ -38,11 +38,11 @@ return [
     'guards' => [
         'user' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'user',
         ],
         'organizer' => [
             'driver' => 'session',
-            'provider' => 'organizers',
+            'provider' => 'organizer',
         ],
         // 'api' => [
         //     'driver' => 'token',
@@ -69,12 +69,12 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'user' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
             // 'table' => 'user',
         ],
-        'organizers' => [
+        'organizer' => [
             'driver' => 'eloquent',
             'model' => App\Organizer::class,
             // 'table' => 'organizer',
@@ -97,14 +97,14 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'user' => [
+            'provider' => 'user',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],
-        'organizers' => [
-            'provider' => 'organizers',
+        'organizer' => [
+            'provider' => 'organizer',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

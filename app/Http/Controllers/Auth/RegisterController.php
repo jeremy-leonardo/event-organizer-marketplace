@@ -53,7 +53,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'user_name' => ['required', 'string', 'max:255'],
-            'user_email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'user_email' => ['required', 'string', 'email', 'max:255', 'unique:user'],
             'user_password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -74,12 +74,14 @@ class RegisterController extends Controller
      */
     protected function createUser(Request $request)
     {
-        $this->userValidator($request->all())->validate();
+        // $this->userValidator($request->all())->validate();
         $user = User::create([
             'user_name' => $request['name'],
             'user_email' => $request['email'],
             'user_password' => bcrypt($request['password']),
+            'user_phone_number' => $request['phonenumber'],
         ]);
+        // $user->save();
         return redirect()->intended('/login');
     }
 
