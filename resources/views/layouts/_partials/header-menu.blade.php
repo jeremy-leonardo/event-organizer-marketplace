@@ -134,9 +134,11 @@
               </ul> -->
               <ul class="nav navbar-nav navbar-right right_nav pull-right">
                 <li class="nav-item">
+                  @guest
                   <a href="/login" class="nav-link">
                     <i class="ti-user" aria-hidden="true"></i><span> Login</span>
                   </a>
+                  @endguest
                 </li>
               </ul>
             </div>
