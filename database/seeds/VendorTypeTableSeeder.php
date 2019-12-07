@@ -16,7 +16,7 @@ class VendorTypeTableSeeder extends Seeder
             ['vendor_type_name' => 'Event Organizer'],
             ['vendor_type_name' => 'Catering'],
             ['vendor_type_name' => 'Music'],
-            ['vendor_type_name' => 'Lighting'],
+            ['vendor_type_name' => 'Decoration'],
             ['vendor_type_name' => 'Building and Venue Provider'],
         ]);
     }
