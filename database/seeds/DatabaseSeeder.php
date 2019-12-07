@@ -13,7 +13,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             CityTableSeeder::class,
-            VendorTypeTableSeeder::class
+            VendorTypeTableSeeder::class,
+            VendorTableSeeder::class,
+            UserTableSeeder::class,
+            BookingStatusTableSeeder::class,
         ]);
     }
 }
