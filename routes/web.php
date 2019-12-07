@@ -20,15 +20,15 @@ Route::get('/', 'HomeController@index')->name('homePage');
 Route::get('/login', 'Auth\LoginController@index')->name('loginPage');
 Route::get('/user/login', 'Auth\LoginController@showUserLogin')->name('userLoginPage');
 Route::post('/user/login', 'Auth\LoginController@loginUser');
-Route::get('/organizer/login', 'Auth\LoginController@showOrganizerLogin')->name('organizerLoginPage');
-Route::post('/organizer/login', 'Auth\LoginController@loginOrganizer');
+Route::get('/vendor/login', 'Auth\LoginController@showVendorLogin')->name('vendorLoginPage');
+Route::post('/vendor/login', 'Auth\LoginController@loginVendor');
 
 // REGISTER
 Route::get('/register', 'Auth\RegisterController@index')->name('registerPage');
 Route::get('/user/register', 'Auth\RegisterController@showUserRegister')->name('registerUserPage');
 Route::post('/user/register', 'Auth\RegisterController@createUser');
-Route::get('/organizer/register', 'Auth\RegisterController@showOrganizerRegister')->name('registerOrganizerPage');
-Route::post('/organizer/register', 'Auth\RegisterController@createOrganizer');
+Route::get('/vendor/register', 'Auth\RegisterController@showVendorRegister')->name('registerVendorPage');
+Route::post('/vendor/register', 'Auth\RegisterController@createVendor');
 
 // LOGOUT
 Route::get('/logout', 'Auth\LoginController@logout');

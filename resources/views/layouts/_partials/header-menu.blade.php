@@ -1,5 +1,5 @@
 <header class="header_area">
-  @auth
+  @if(Auth::guard('user')->check() || Auth::guard('vendor')->check())
   <div class="top_menu">
     <div class="container">
       <div class="row">
@@ -8,7 +8,10 @@
             <!-- <p>Phone: +0123456789</p> -->
             {{-- <p>Support email: jeremy.leonardo@binus.ac.id</p> --}}
             @auth('user')
-              <p>Hello, {{Auth::user()->user_name}}</p>
+              <p>Hello, {{Auth::guard('user')->user()->user_name}}</p>
+            @endauth
+            @auth('vendor')
+              <p>Hello, {{Auth::guard('vendor')->user()->vendor_name}}</p>
             @endauth
           </div>
         </div>
@@ -36,7 +39,7 @@
       </div>
     </div>
   </div>
-  @endauth
+  @endif
   <div class="main_menu">
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-light w-100">
@@ -134,11 +137,11 @@
               </ul> -->
               <ul class="nav navbar-nav navbar-right right_nav pull-right">
                 <li class="nav-item">
-                  @guest
+                  @if (!Auth::check())
                   <a href="/login" class="nav-link">
                     <i class="ti-user" aria-hidden="true"></i><span> Login</span>
                   </a>
-                  @endguest
+                  @endif
                 </li>
               </ul>
             </div>

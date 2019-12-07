@@ -17,8 +17,8 @@
 
         <h4 class="text-uppercase pt-4 pb-4" style="color: white;">or</h4>
 
-        <button id="reg-organizer-btn" type="button" class="main_btn" onclick="">
-            Register as Organizer
+        <button id="reg-vendor-btn" type="button" class="main_btn" onclick="">
+            Register as Vendor
         </button>
 
         <h4 class="text-uppercase p-5" style="color: #80d292;">
@@ -35,9 +35,9 @@
         </section>
     @endif
     
-    @if($register_as == 'organizer')
+    @if($register_as == 'vendor')
         <section class="p-4">
-            @include('auth.register._partials.organizer')
+            @include('auth.register._partials.vendor')
         </section>
     @endif
 
@@ -53,9 +53,9 @@
         // alert( "Handler for .click() called." );
         window.location.href = "{{url('/')}}" + "/user/register";
     });
-    $( "#reg-organizer-btn" ).click(function() {
+    $( "#reg-vendor-btn" ).click(function() {
         // alert( "Handler for .click() called." );
-        window.location.href = "{{url('/')}}" + "/organizer/register";
+        window.location.href = "{{url('/')}}" + "/vendor/register";
     });
 
 </script>

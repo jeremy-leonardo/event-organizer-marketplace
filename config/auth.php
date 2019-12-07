@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'user',
-        'passwords' => 'users',
+        'passwords' => 'user',
     ],
 
     /*
@@ -40,9 +40,9 @@ return [
             'driver' => 'session',
             'provider' => 'user',
         ],
-        'organizer' => [
+        'vendor' => [
             'driver' => 'session',
-            'provider' => 'organizer',
+            'provider' => 'vendor',
         ],
         // 'api' => [
         //     'driver' => 'token',
@@ -74,10 +74,10 @@ return [
             'model' => App\User::class,
             // 'table' => 'user',
         ],
-        'organizer' => [
+        'vendor' => [
             'driver' => 'eloquent',
-            'model' => App\Organizer::class,
-            // 'table' => 'organizer',
+            'model' => App\Vendor::class,
+            // 'table' => 'vendor',
         ],
     ],
 
@@ -103,8 +103,8 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-        'organizer' => [
-            'provider' => 'organizer',
+        'vendor' => [
+            'provider' => 'vendor',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

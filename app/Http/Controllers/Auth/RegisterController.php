@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Vendor;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -40,7 +41,7 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
         $this->middleware('guest:user');
-        $this->middleware('guest:organizer');
+        $this->middleware('guest:vendor');
     }
 
     /**
@@ -57,12 +58,12 @@ class RegisterController extends Controller
             'user_password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
-    protected function organizerValidator(array $data)
+    protected function vendorValidator(array $data)
     {
         return Validator::make($data, [
-            'organizer_name' => ['required', 'string', 'max:255'],
-            'organizer_email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'organizer_password' => ['required', 'string', 'min:8', 'confirmed'],
+            'vendor_name' => ['required', 'string', 'max:255'],
+            'vendor_email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'vendor_password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
@@ -85,13 +86,14 @@ class RegisterController extends Controller
         return redirect()->intended('/login');
     }
 
-    protected function createOrganizer(Request $request)
+    protected function createVendor(Request $request)
     {
-        $this->organizerValidator($request->all())->validate();
-        $organizer = Organizer::create([
-            'organizer_name' => $request['name'],
-            'organizer_email' => $request['email'],
-            'organizer_password' => bcrypt($request['password']),
+        // $this->vendorValidator($request->all())->validate();
+        $vendor = Vendor::create([
+            'vendor_name' => $request['name'],
+            'vendor_email' => $request['email'],
+            'vendor_password' => bcrypt($request['password']),
+            'vendor_phone_number' => $request['phone-number'],
         ]);
         return redirect()->intended('/login');
     }
@@ -105,9 +107,9 @@ class RegisterController extends Controller
         return view('auth.register.index', ['register_as' => 'user']);
     }
 
-    public function showOrganizerRegister()
+    public function showvendorRegister()
     {
-        return view('auth.register.index', ['register_as' => 'organizer']);
+        return view('auth.register.index', ['register_as' => 'vendor']);
     }
 
 }
