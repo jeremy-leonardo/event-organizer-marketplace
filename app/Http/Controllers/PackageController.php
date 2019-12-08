@@ -36,9 +36,9 @@ class PackageController extends BaseController
             return redirect()->intended('/login');
         }
 
-        $query = "SELECT * FROM package";
-        $packages = DB::select($query);
-        // dd($packages);
+        // $query = "SELECT * FROM package";
+        // $packages = DB::select($query);
+        $packages = DB::table('package')->get();
 
         return view('package.show', ['packages' => $packages]);
     }

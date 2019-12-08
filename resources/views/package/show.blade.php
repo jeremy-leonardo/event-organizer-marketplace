@@ -31,14 +31,16 @@
             <div class="short_details">
               <div class="meta-top d-flex">
                 @php
-                  $vendor_query = '
-                    SELECT vendor_id, vendor_name, vendor_type_name, vendor.vendor_type_id
-                    FROM vendor JOIN vendor_type
-                    WHERE vendor_id = '.$package->vendor_id.' 
-                    LIMIT 1 ;
-                  ';
-                  $vendor = DB::select($vendor_query)[0];
-                @endphp
+                  // $vendor_query = '
+                  //   SELECT vendor_id, vendor_name, vendor_type_name, vendor.vendor_type_id
+                  //   FROM vendor JOIN vendor_type
+                  //   WHERE vendor_id = '.$package->vendor_id.' 
+                  //   LIMIT 1 ;
+                  // ';
+                  // $vendor = DB::select($vendor_query)[0];
+                  // $vendor = App\Vendor::where('vendor_id', $package->vendor_id)->join('vendor_type', 'vendor_type.vendor_type_id', '=', 'vendor.vendor_type_id')->select('vendor_id','vendor_name','vendor.vendor_type_id')->first();
+                  $vendor = DB::table('vendor')->where('vendor_id', $package->vendor_id)->join('vendor_type', 'vendor_type.vendor_type_id', '=', 'vendor.vendor_type_id')->select('vendor_id','vendor_name','vendor.vendor_type_id')->first();
+               @endphp
                 By&nbsp;<a href="#">{{$vendor->vendor_name}}
                   @if($vendor->vendor_type_id != 1)
                     <span> &nbsp; | &nbsp; {{$vendor->vendor_type_name}} </span>
