@@ -58,9 +58,7 @@
             "@php artisan key:generate --ansi"
         ],
         "post-install-cmd": [
-            "chmod -R 777 public/",
-            "php artisan key:generate",
-            "php artisan config:cache"
+            "chmod -R 777 public/"
         ]
     }
 }
