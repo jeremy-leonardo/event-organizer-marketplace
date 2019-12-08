@@ -32,3 +32,20 @@ Route::post('/vendor/register', 'Auth\RegisterController@createVendor');
 
 // LOGOUT
 Route::get('/logout', 'Auth\LoginController@logout');
+
+// PACKAGE
+Route::get('/packages', 'PackageController@showAllPackages');
+Route::get('/package/create', 'PackageController@showCreatePackage');
+Route::get('/package/create', 'PackageController@showCreatePackage')->name('createPackagePage');
+Route::post('/package/create', 'PackageController@createPackage');
+// Route::post('/vendor/packages', 'PackageController@showVendorPackages');
+// Route::get('/package/{id}', 'PackageController@showDetail');
+// Route::get('/package/{id}/edit', 'PackageController@showEditDetail');
+// Route::put('/package/{id}/edit', 'PackageController@editDetail');
+
+// BOOKING
+// Route::get('/booking/create', 'BookingController@showCreateBooking')->name('createBookingPage');
+// Route::post('/booking/create', 'BookingController@createBooking');
+
+// WIP -- FOR DEVELOPMENT PURPOSE
+// Route::get('/wip', function() { return view('package.show');});

@@ -21,7 +21,7 @@
                     <input type="password" name="password" class="form-control" id="password" placeholder="Password">
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="main_btn">Submit</button>
                 </div>
             </form>
             <!-- END LOGIN FORM -->

@@ -33,7 +33,7 @@
                     <input type="text" name="phone-number" class="form-control" id="phone-number" placeholder="Phone Number">
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="main_btn">Submit</button>
                 </div>
             </form>
             <!-- END LOGIN FORM -->
