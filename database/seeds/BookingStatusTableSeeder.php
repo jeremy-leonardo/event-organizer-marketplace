@@ -15,7 +15,8 @@ class BookingStatusTableSeeder extends Seeder
             ['booking_status_name' => 'Pending Confirmation'],
             ['booking_status_name' => 'Pending Payment'],
             ['booking_status_name' => 'Paid - Booking In Process'],
-            ['booking_status_name' => 'Done'],
+            // ['booking_status_name' => 'Done'],
+            ['booking_status_name' => 'Cancelled'],
         ]);
     }
 }

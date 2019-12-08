@@ -15,7 +15,7 @@ class VendorTableSeeder extends Seeder
             [
             'vendor_name' => 'Vendor01', 
             'vendor_email' => 'vendor@mail.com',
-            'vendor_password' => 'password',
+            'vendor_password' => bcrypt('password'),
             'vendor_phone_number' => '0235243242',
             ]
         ]);

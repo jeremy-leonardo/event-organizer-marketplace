@@ -15,13 +15,13 @@ class UserTableSeeder extends Seeder
             [
             'user_name' => 'User01', 
             'user_email' => 'user@mail.com',
-            'user_password' => 'password',
+            'user_password' => bcrypt('password'),
             'user_phone_number' => '0234273242',
             ],
             [
             'user_name' => 'Jeremy Leonardo', 
             'user_email' => 'jeremy_leonardo@mail.com',
-            'user_password' => 'password',
+            'user_password' => bcrypt('password'),
             'user_phone_number' => '0234243242',
             ],
         ]);
