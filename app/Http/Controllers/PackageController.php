@@ -43,6 +43,23 @@ class PackageController extends BaseController
         return view('package.show', ['packages' => $packages]);
     }
 
+    public function showVendorPackages()
+    {
+        if(Auth::guard('user')->check()){
+            abort(403); exit();
+        }else if(!Auth::guard('vendor')->check()){
+            return redirect()->intended('/login');
+        }
+
+        // $query = "SELECT * FROM package";
+        // $packages = DB::select($query);
+        $packages = DB::table('package')
+        ->where('vendor_id', Auth::guard('vendor')->user()->vendor_id)
+        ->get();
+
+        return view('package.show-vendor', ['packages' => $packages]);
+    }
+
     public function showCreatePackage()
     {
         if(!Auth::guard('vendor')->check()){

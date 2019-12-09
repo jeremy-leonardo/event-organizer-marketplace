@@ -19,7 +19,7 @@
       
       <!--================ PACKAGES =================-->
       <div class="row">
-        @if($packages == [])
+        @if(count($packages) == 0)
           <div class="col-12 text-center pb-5 mb-5">No Data</div>
         @endif
         @foreach($packages as $package)
@@ -39,7 +39,11 @@
                   // ';
                   // $vendor = DB::select($vendor_query)[0];
                   // $vendor = App\Vendor::where('vendor_id', $package->vendor_id)->join('vendor_type', 'vendor_type.vendor_type_id', '=', 'vendor.vendor_type_id')->select('vendor_id','vendor_name','vendor.vendor_type_id')->first();
-                  $vendor = DB::table('vendor')->where('vendor_id', $package->vendor_id)->join('vendor_type', 'vendor_type.vendor_type_id', '=', 'vendor.vendor_type_id')->select('vendor_id','vendor_name','vendor.vendor_type_id')->first();
+                  $vendor = DB::table('vendor')
+                  ->where('vendor_id', $package->vendor_id)
+                  ->join('vendor_type', 'vendor_type.vendor_type_id', '=', 'vendor.vendor_type_id')
+                  ->select('vendor_id','vendor_name','vendor.vendor_type_id')
+                  ->first();
                @endphp
                 By&nbsp;<a href="#">{{$vendor->vendor_name}}
                   @if($vendor->vendor_type_id != 1)
