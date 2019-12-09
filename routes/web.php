@@ -34,8 +34,7 @@ Route::post('/vendor/register', 'Auth\RegisterController@createVendor');
 Route::get('/logout', 'Auth\LoginController@logout');
 
 // PACKAGE
-Route::get('/packages', 'PackageController@showAllPackages');
-Route::get('/package/create', 'PackageController@showCreatePackage');
+Route::get('/packages', 'PackageController@showAllPackages')->name('packagesPage');
 Route::get('/package/create', 'PackageController@showCreatePackage')->name('createPackagePage');
 Route::post('/package/create', 'PackageController@createPackage');
 // Route::post('/vendor/packages', 'PackageController@showVendorPackages');
@@ -44,8 +43,9 @@ Route::post('/package/create', 'PackageController@createPackage');
 // Route::put('/package/{id}/edit', 'PackageController@editDetail');
 
 // BOOKING
-// Route::get('/booking/create', 'BookingController@showCreateBooking')->name('createBookingPage');
-// Route::post('/booking/create', 'BookingController@createBooking');
+Route::get('/booking/create', 'BookingController@showCreateBooking')->name('createBookingPage');
+Route::post('/booking/create', 'BookingController@createBooking');
+Route::get('/user/bookings', 'BookingController@createBooking')->name('userBookingsPage');
 
 // WIP -- FOR DEVELOPMENT PURPOSE
-// Route::get('/wip', function() { return view('package.show');});
+Route::get('/wip', function() { return view('booking.create');});

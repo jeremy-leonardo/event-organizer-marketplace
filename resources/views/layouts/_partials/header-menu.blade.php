@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-lg navbar-light w-100">
       <!-- Brand and toggle get grouped for better mobile display -->
       <a class="navbar-brand logo_h" href="/">
-        <img src="img/logo.png" alt="" style="width:70px;" />
+        <img src="{{asset('img/logo.png')}}" alt="" style="width:70px;" />
         {{-- <h3>EOM</h3> --}}
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -26,6 +26,11 @@
               @if(Auth::guard('vendor')->check())
               <li class="nav-item submenu" id="packages-menu">
                 <a class="nav-link" href="/package/create">Create Package</a>
+              </li>
+              @endif
+              @if(Auth::guard('user')->check())
+              <li class="nav-item submenu" id="packages-menu">
+                <a class="nav-link" href="/booking/create">Create Booking</a>
               </li>
               @endif
               {{-- <li class="nav-item submenu dropdown">
@@ -117,10 +122,3 @@
     </nav>
   </div>
 </div>
-
-<script type="text/javascript">
-  $('.nav-link a').filter(function(){return this.href==location.href}).parent().addClass('active').siblings().removeClass('active')
-  $('.nav-link a').click(function(){
-    $(this).parent().addClass('active').siblings().removeClass('active')	
-  })
-</script>
