@@ -24,6 +24,12 @@ class UserTableSeeder extends Seeder
             'user_password' => bcrypt('password'),
             'user_phone_number' => '0234243242',
             ],
+            [
+            'user_name' => 'Jeremy', 
+            'user_email' => 'jeremy@mail.com',
+            'user_password' => bcrypt('password'),
+            'user_phone_number' => '02374243242',
+            ],
         ]);
     }
 }
