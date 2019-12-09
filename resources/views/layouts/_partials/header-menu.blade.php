@@ -23,6 +23,11 @@
               <li class="nav-item submenu" id="packages-menu">
                 <a class="nav-link" href="/packages">Packages</a>
               </li>
+              @if(Auth::guard('vendor')->check())
+              <li class="nav-item submenu" id="packages-menu">
+                <a class="nav-link" href="/package/create">Create Package</a>
+              </li>
+              @endif
               {{-- <li class="nav-item submenu dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false"></a>

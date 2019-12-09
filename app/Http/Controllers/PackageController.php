@@ -38,7 +38,7 @@ class PackageController extends BaseController
 
         // $query = "SELECT * FROM package";
         // $packages = DB::select($query);
-        $packages = DB::table('package')->get();
+        $packages = DB::table('package')->where('package_is_active', 1)->get();
 
         return view('package.show', ['packages' => $packages]);
     }
