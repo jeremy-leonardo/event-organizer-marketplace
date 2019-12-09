@@ -17,6 +17,7 @@ class Package extends Model
         'package_lower_bound_price', 
         'package_upper_bound_price', 
         'package_description',
+        'package_is_active',
     ];
 
 }
