@@ -23,16 +23,21 @@
               <li class="nav-item submenu" id="packages-menu">
                 <a class="nav-link" href="/packages">Packages</a>
               </li>
-              @if(Auth::guard('vendor')->check())
+              @auth('vendor')
+              <li class="nav-item submenu" id="packages-menu">
+                <a class="nav-link" href="/vendor/packages">My Packages</a>
+              </li>
+              @endauth
+              @auth('vendor')
               <li class="nav-item submenu" id="packages-menu">
                 <a class="nav-link" href="/package/create">Create Package</a>
               </li>
-              @endif
-              @if(Auth::guard('user')->check())
+              @endauth
+              @auth('user')
               <li class="nav-item submenu" id="packages-menu">
                 <a class="nav-link" href="/booking/create">Create Booking</a>
               </li>
-              @endif
+              @endauth
               {{-- <li class="nav-item submenu dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false"></a>

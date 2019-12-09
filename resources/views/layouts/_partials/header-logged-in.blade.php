@@ -16,16 +16,20 @@
       <div class="col-lg-5">
         <div class="float-right">
           <ul class="right_side">
+            @auth('user')
             <li>
-              <a href="tracking.html">
-                Booking Status
+              <a href="/user/bookings">
+                My Bookings
               </a>
             </li>
+            @endauth
+            @auth('vendor')
             <li>
-              <a href="contact.html">
-                Contact Us
+              <a href="/vendor/bookings">
+                Check Received Booking Detail
               </a>
             </li>
+            @endauth
             <li>
               <a href="{{url('/')}}/logout">
                 Log out
