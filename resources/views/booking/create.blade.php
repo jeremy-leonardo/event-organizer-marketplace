@@ -29,7 +29,7 @@
           @endphp
           <div class="form-group">
             <label for="city">City</label><br>
-            <select class="form-control" id="city" name="city">
+            <select id="city" name="city">
               @foreach($cities as $city)
               <option value={{$city->city_id}} style="width:1000px;">{{$city->city_name}}</option>
               @endforeach
