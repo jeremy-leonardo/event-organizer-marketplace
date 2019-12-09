@@ -1,7 +1,7 @@
 <footer class="footer-area section_gap">
     <div class="container">
       <div class="row">
-        <div class="col-lg-2 col-md-6 single-footer-widget">
+        <div class="col-lg-3 col-6 single-footer-widget">
           <h4>Top Products</h4>
           <ul>
             <li><a href="#">Managed Website</a></li>
@@ -10,7 +10,7 @@
             <li><a href="#">Marketing Service</a></li>
           </ul>
         </div>
-        <div class="col-lg-2 col-md-6 single-footer-widget">
+        <div class="col-lg-3 col-6 single-footer-widget">
           <h4>Quick Links</h4>
           <ul>
             <li><a href="#">Jobs</a></li>
@@ -19,7 +19,7 @@
             <li><a href="#">Terms of Service</a></li>
           </ul>
         </div>
-        <div class="col-lg-2 col-md-6 single-footer-widget">
+        <div class="col-lg-3 col-6 single-footer-widget">
           <h4>Features</h4>
           <ul>
             <li><a href="#">Jobs</a></li>
@@ -28,7 +28,7 @@
             <li><a href="#">Terms of Service</a></li>
           </ul>
         </div>
-        <div class="col-lg-2 col-md-6 single-footer-widget">
+        <div class="col-lg-3 col-6 single-footer-widget">
           <h4>Resources</h4>
           <ul>
             <li><a href="#">Guides</a></li>
@@ -37,7 +37,7 @@
             <li><a href="#">Agencies</a></li>
           </ul>
         </div>
-        <div class="col-lg-4 col-md-6 single-footer-widget">
+        {{-- <div class="col-lg-4 col-md-6 single-footer-widget">
           <h4>Newsletter</h4>
           <p>You can trust us. we only send promo offers,</p>
           <div class="form-wrap" id="mc_embed_signup">
@@ -53,7 +53,7 @@
               <div class="info"></div>
             </form>
           </div>
-        </div>
+        </div> --}}
       </div>
       <div class="footer-bottom row align-items-center">
         <p class="footer-text m-0 col-lg-8 col-md-12"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
