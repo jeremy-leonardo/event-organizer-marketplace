@@ -30,7 +30,7 @@ class BookingController extends BaseController
         
     }
 
-    public function showAllPackages()
+    public function showUserBookings()
     {
         if(Auth::guard('vendor')->check()){
             abort(403); exit();
@@ -38,11 +38,32 @@ class BookingController extends BaseController
             return redirect()->intended('/login');
         }
 
-        // $query = "SELECT * FROM package";
-        // $packages = DB::select($query);
-        $packages = DB::table('package')->get();
+        // $query = "SELECT * FROM booking";
+        // $bookings = DB::select($query);
+        $bookings = DB::table('booking')
+        ->where('user_id','=',Auth::guard('user')->user()->user_id)
+        ->get();
 
-        return view('package.show', ['packages' => $packages]);
+        return view('booking.show-user', ['bookings' => $bookings]);
+    }
+
+    public function showVendorBookings()
+    {
+        if(Auth::guard('user')->check()){
+            abort(403); exit();
+        }else if(!Auth::guard('vendor')->check()){
+            return redirect()->intended('/login');
+        }
+
+        // $query = "SELECT * FROM booking";
+        // $bookings = DB::select($query);
+        $bookings = DB::table('booking')
+        ->join('booking_detail','booking_detail.booking_id','=','booking.booking_id')
+        ->join('package','package.package_id','=','booking_detail.package_id')
+        ->where('vendor_id','=',Auth::guard('vendor')->user()->vendor_id)
+        ->get();
+
+        return view('booking.show-vendor', ['bookings' => $bookings]);
     }
 
     public function showCreateBooking()
