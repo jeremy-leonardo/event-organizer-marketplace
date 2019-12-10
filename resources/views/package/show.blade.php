@@ -72,6 +72,8 @@
         <div class="col-lg-12 text-center">
           <div class="main_title pb-0">
             <h2><span>Create Your Booking Now!</span></h2>
+            <p>You'll need to create a booking first before taking a package from this page.</p>
+            <p>Create one if you haven't!</p>
           </div>
           <a name="" id="" class="main_btn" href="/booking/create" role="button">
             Create A Booking
