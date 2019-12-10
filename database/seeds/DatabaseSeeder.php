@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             VendorTableSeeder::class,
             UserTableSeeder::class,
             BookingStatusTableSeeder::class,
+            PackageTableSeeder::class,
         ]);
     }
 }
