@@ -39,9 +39,9 @@ Route::get('/vendor/packages', 'PackageController@showVendorPackages')->name('ve
 Route::get('/package/create', 'PackageController@showCreatePackage')->name('createPackagePage');
 Route::post('/package/create', 'PackageController@createPackage');
 // Route::post('/vendor/packages', 'PackageController@showVendorPackages');
-// Route::get('/package/{id}', 'PackageController@showDetail');
-// Route::get('/package/{id}/edit', 'PackageController@showEditDetail');
-// Route::put('/package/{id}/edit', 'PackageController@editDetail');
+Route::get('/package/{package_id}', 'PackageController@showPackageDetail');
+// Route::get('/package/{id}/edit', 'PackageController@showEditPackageDetail');
+// Route::put('/package/{id}/edit', 'PackageController@editPackageDetail');
 
 // BOOKING
 Route::get('/booking/create', 'BookingController@showCreateBooking')->name('createBookingPage');

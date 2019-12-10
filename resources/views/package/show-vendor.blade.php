@@ -47,19 +47,6 @@
       </div>
       <!--================ END PACKAGES =================-->
 
-      @if(Auth::guard('user')->check())
-      <div class="row justify-content-center pt-3">
-        <div class="col-lg-12 text-center">
-          <div class="main_title pb-0">
-            <h2><span>Create Your Booking Now!</span></h2>
-          </div>
-          <a name="" id="" class="main_btn" href="/booking/create" role="button">
-            Create A Booking
-          </a>
-        </div>
-      </div>
-      @endif
-
     </div>
   </section>
 
