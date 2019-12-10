@@ -22,7 +22,7 @@ class CreateBookingTable extends Migration
             $table->bigInteger('city_id')->unsigned();
             $table->foreign('city_id')->references('city_id')->on('city');
             $table->date('event_date');
-            $table->string('booking_description', 255)->default('');
+            $table->text('booking_description')->default('');
             $table->timestamps();
         });
     }

@@ -20,7 +20,7 @@ class CreatePackageTable extends Migration
             $table->string('package_name', 255);
             $table->bigInteger('package_upper_bound_price');
             $table->bigInteger('package_lower_bound_price');
-            $table->string('package_description', 255)->default('');
+            $table->text('package_description')->default('');
             $table->boolean('package_is_active')->default(true);
             $table->timestamps();
         });
