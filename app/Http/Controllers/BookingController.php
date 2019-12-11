@@ -110,6 +110,7 @@ class BookingController extends BaseController
             'booking_description' => $request['booking-description'],
         ]);
         return redirect()->route('/user/bookings');
+        return redirect()->route('userBookingsPage');
     }
 
 }
