@@ -71,8 +71,11 @@ class PackageController extends BaseController
         $package = DB::table('package')
         ->where('package_id', $package_id)
         ->get()->first();
+        $vendor = DB::table('vendor')
+        ->where('vendor_id', $package->vendor_id)
+        ->get()->first();
 
-        return view('package.show-detail', ['package' => $package]);
+        return view('package.show-detail', ['package' => $package, 'vendor' => $vendor]);
     }
 
     public function showCreatePackage()

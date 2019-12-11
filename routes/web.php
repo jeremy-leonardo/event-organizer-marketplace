@@ -49,5 +49,7 @@ Route::post('/booking/create', 'BookingController@createBooking');
 Route::get('/user/bookings', 'BookingController@showUserBookings')->name('userBookingsPage');
 Route::get('/vendor/bookings', 'BookingController@showVendorBookings')->name('vendorBookingsPage');
 
+Route::post('/tag/package/{package_id}/booking/{booking_id}', 'BookingController@createBookingDetail');
+
 // WIP -- FOR DEVELOPMENT PURPOSE
 Route::get('/wip', function() { return view('booking.create');});

@@ -23,10 +23,10 @@
           <div class="col-12 text-center pb-5 mb-5">No Data</div>
         @endif
         @foreach($packages as $package)
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-4 col-md-6 p-3 card">
           <div class="single-blog">
             <div class="thumb">
-              {{-- <img class="img-fluid" src="{{asset('img/placeholder/placeholder-image.png')}}" alt=""> --}}
+              <img class="img-fluid" src="{{asset('img/placeholder/placeholder-image.png')}}" alt="">
             </div>
             <div class="short_details">
               <div class="meta-top d-flex">
@@ -51,15 +51,19 @@
                   @endif
                 </a>
               </div>
-              <a class="d-block" href="single-blog.html">
+              <a class="d-block" href="/package/{{$package->package_id}}">
                 <h4>{{$package->package_name}}</h4>
               </a>
               <div class="text-wrap">
                 <p>
-                  {{$package->package_description}}
+                  @php
+                    if (strlen($package->package_description) > 200)
+                      $package_desc = substr($package->package_description, 0, 197) . '...';  
+                  @endphp
+                  {{$package_desc}}
                 </p>
               </div>
-              <a href="#" class="blog_btn">Learn More <span class="ml-2 ti-arrow-right"></span></a>
+              <a href="/package/{{$package->package_id}}" class="blog_btn">Learn More <span class="ml-2 ti-arrow-right"></span></a>
             </div>
           </div>
         </div>
