@@ -31,7 +31,7 @@
             <div class="short_details">
               <div class="meta-top d-flex">
               </div>
-              <a class="d-block" href="single-blog.html">
+              <a class="d-block" href="/booking/{{$booking->booking_id}}">
                 <h4>{{date("d-m-Y", strtotime($booking->event_date))}}</h4>
               </a>
               <div class="text-wrap">

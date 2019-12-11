@@ -136,4 +136,44 @@ class BookingController extends BaseController
         return redirect()->route('packagesPage');
     }
 
+    public function showBookingDetail($booking_id){
+        if(!Auth::guard('user')->check() && !Auth::guard('vendor')->check()){
+            abort(403); exit();
+        }
+
+        if(Auth::guard('user')->check()){
+            $booking = DB::table('booking')
+                ->where('booking_id', $booking_id)
+                ->get()
+                ->first();
+            if($booking->user_id != Auth::guard('user')->user()->user_id){
+                abort(403); exit();
+            }
+            $booking_details = DB::table('booking_detail')
+                ->where('booking_id', $booking_id)
+                ->get();
+            return view('booking.show-detail', ['booking' => $booking, 'booking_details' => $booking_details]);
+        }
+        else if(Auth::guard('vendor')->check()){
+            $booking = DB::table('booking')
+                ->where('booking_id', $booking_id)
+                ->get()
+                ->first();
+            $booking_details_vendor = DB::table('booking_detail')
+                ->join('package','booking_detail.package_id','=','package.package_id')
+                ->where('booking_id', $booking_id)
+                ->where('vendor_id', Auth::guard('vendor')->user()->vendor_id)
+                ->get();
+            if(count($booking_details_vendor) == 0){
+                abort(403); exit();
+            }
+            $booking_details = DB::table('booking_detail')
+                ->join('package','booking_detail.package_id','=','package.package_id')
+                ->join('vendor','package.vendor_id','=','vendor.vendor_id')
+                ->where('booking_id', $booking_id)
+                ->get();
+            return view('booking.show-detail', ['booking' => $booking, 'booking_details' => $booking_details]);
+        }
+    }
+
 }

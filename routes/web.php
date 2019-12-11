@@ -49,7 +49,7 @@ Route::post('/booking/create', 'BookingController@createBooking');
 Route::get('/user/bookings', 'BookingController@showUserBookings')->name('userBookingsPage');
 Route::get('/vendor/bookings', 'BookingController@showVendorBookings')->name('vendorBookingsPage');
 Route::post('/booking-detail/create', 'BookingController@createBookingDetail');
-
+Route::get('/booking/{booking_id}', 'BookingController@showBookingDetail')->name('bookingDetailPage');
 
 // WIP -- FOR DEVELOPMENT PURPOSE
 Route::get('/wip', function() { return view('booking.create');});
