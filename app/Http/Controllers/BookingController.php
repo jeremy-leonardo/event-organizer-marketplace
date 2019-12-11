@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Auth;
 use App\Booking;
+use App\BookingDetail;
 
 class BookingController extends BaseController
 {
@@ -109,8 +110,30 @@ class BookingController extends BaseController
             'city_id' => $request['city'],
             'booking_description' => $request['booking-description'],
         ]);
-        return redirect()->route('/user/bookings');
         return redirect()->route('userBookingsPage');
+    }
+
+    public function createBookingDetail(Request $request) {
+        if(!Auth::guard('user')->check()){
+            abort(403); exit();
+        }
+        $same_booking_detail = DB::table('booking_detail')
+            ->where('booking_id', '=', $request['booking'])
+            ->where('package_id', '=', $request['package'])
+            ->get();
+
+        if(count($same_booking_detail) > 0){
+            // return response()->view('errors.custom', ['The same package already exist in that booking'], 500);
+            // abort(500, 'The same package already exist in that booking'); exit();
+            $error = (object)['code' => '500', 'message' => 'The same package already exists in that booking'];
+            return view('error',['error' => $error]);
+        }
+        $booking_detail = BookingDetail::create([
+            'booking_id' => $request['booking'],
+            'package_id' => $request['package'],
+            'booking_detail_description' => $request['booking-detail-description'],
+        ]);
+        return redirect()->route('packagesPage');
     }
 
 }

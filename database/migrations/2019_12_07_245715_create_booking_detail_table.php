@@ -19,7 +19,6 @@ class CreateBookingDetailTable extends Migration
             $table->foreign('booking_id')->references('booking_id')->on('booking');
             $table->bigInteger('package_id')->unsigned();
             $table->foreign('package_id')->references('package_id')->on('package');
-            $table->date('event_date');
             $table->text('booking_detail_description')->default('');
             $table->boolean('booking_detail_is_confirmed')->default(false);
             $table->boolean('booking_detail_is_paid')->default(false);

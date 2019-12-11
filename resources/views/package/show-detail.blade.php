@@ -52,23 +52,7 @@
             </div>
           </div>
           <div class="dropdown text-right pb-5 mb-5">
-            <button class="main_btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Tag to Booking
-            </button>
-            {{-- WORK IN PROGRESS --}}
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              @php
-              $bookings = DB::table('booking')
-                ->where('user_id', Auth::guard('user')->user()->user_id)
-                ->get();
-              @endphp
-              @if(count($bookings) == 0)
-              <a class="dropdown-item">You don't have any upcoming booking</a>
-              @endif
-              @foreach($bookings as $booking)
-              <a class="dropdown-item" href="/tag/booking-{{$booking->booking_id}}/package-{{$package->package_id}}">Booking {{$booking->event_date}}</a>
-              @endforeach
-            </div>
+            <button class="main_btn" data-toggle="modal" data-target="#modelId">Add to Booking</button>
           </div>
         </div>
         @elseif($package->package_is_active == 0)
@@ -99,6 +83,73 @@
 
     </div>
   </section>
+
+
+  
+  <!-- CREATE BOOKING DETAIL FORM -->
+  <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Package to Booking</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          @php
+          $bookings = DB::table('booking')
+            ->where('user_id', Auth::guard('user')->user()->user_id)
+            ->get();
+          @endphp
+          @if(count($bookings) == 0)
+            <div class="text-center">You don't have any upcoming booking</div>
+          @else
+          <form method="POST" action="/booking-detail/create">
+            {{ csrf_field() }}
+            <meta name="csrf-token" content="{{ Session::token() }}">  
+            <div class="form-group" hidden>
+              <input type="number" class="form-control" name="package" id="package" value={{$package->package_id}}>
+            </div>
+
+            <div class="form-group">
+              <label for="booking">Booking</label><br>
+              <select id="booking" name="booking">
+                {{-- @if(count($bookings) == 0)
+                <option value=-1>You don't have any upcoming booking</option>
+                @endif --}}
+                @foreach($bookings as $booking)
+                <option value={{$booking->booking_id}}>Booking {{date_format(date_create($booking->event_date),'d-m-Y')}}</a>
+                @endforeach
+              </select>
+            </div><br><br>
+
+            <div class="form-group">
+              <label for="booking-detail-description">Booking Detail Description</label>
+              <textarea class="form-control" name="booking-detail-description" id="booking-detail-description" aria-describedby="help-booking-detail-description" placeholder="Booking Detail Description"></textarea>
+              <small id="help-booking-detail-description" class="form-text text-muted">Please describe your preferences or other information for the vendor</small>
+            </div>
+  
+            <div class="form-group">
+              <button type="submit" class="main_btn">Submit</button>
+            </div>
+
+            @if($errors->any())
+            <div class="alert alert-danger alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                @foreach($errors->all() as $error)
+                    {{ $error }}<br>
+                @endforeach
+            </div>
+            @endif
+  
+          </form>
+          @endif
+
+        </div>
+      </div>
+    </div>
+  </div>
 
   
 

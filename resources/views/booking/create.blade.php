@@ -31,7 +31,7 @@
             <label for="city">City</label><br>
             <select id="city" name="city">
               @foreach($cities as $city)
-              <option value={{$city->city_id}} style="width:1000px;">{{$city->city_name}}</option>
+              <option value={{$city->city_id}}>{{$city->city_name}}</option>
               @endforeach
             </select>
           </div><br><br>
