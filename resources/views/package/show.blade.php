@@ -72,7 +72,7 @@
       <!--================ END PACKAGES =================-->
 
       @if(Auth::guard('user')->check())
-      <div class="row justify-content-center pt-3">
+      <div class="row justify-content-center pt-5 mt-5">
         <div class="col-lg-12 text-center">
           <div class="main_title pb-0">
             <h2><span>Create Your Booking Now!</span></h2>
