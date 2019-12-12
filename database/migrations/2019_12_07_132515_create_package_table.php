@@ -18,8 +18,7 @@ class CreatePackageTable extends Migration
             $table->bigInteger('vendor_id')->unsigned();
             $table->foreign('vendor_id')->references('vendor_id')->on('vendor');
             $table->string('package_name', 255);
-            $table->bigInteger('package_upper_bound_price');
-            $table->bigInteger('package_lower_bound_price');
+            $table->bigInteger('package_price');
             $table->text('package_description')->default('');
             $table->boolean('package_is_active')->default(true);
             $table->timestamps();

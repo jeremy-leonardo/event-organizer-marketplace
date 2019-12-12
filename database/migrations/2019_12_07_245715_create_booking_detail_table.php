@@ -20,8 +20,8 @@ class CreateBookingDetailTable extends Migration
             $table->bigInteger('package_id')->unsigned();
             $table->foreign('package_id')->references('package_id')->on('package');
             $table->text('booking_detail_description')->default('');
+            $table->bigInteger('booking_detail_price');
             $table->boolean('booking_detail_is_confirmed')->default(false);
-            $table->boolean('booking_detail_is_paid')->default(false);
             $table->timestamps();
         });
     }

@@ -25,12 +25,8 @@
             <small id="help-package-name" class="form-text text-muted">Example: "The Magnifique Wedding Package"</small>
           </div>
           <div class="form-group">
-            <label for="package-lower-bound-price">Package Lower Bound Price</label>
-            <input type="number" class="form-control" name="package-lower-bound-price" id="package-lower-bound-price" placeholder="Package Lower Bound Price">
-          </div>
-          <div class="form-group">
-            <label for="package-upper-bound-price">Package Upper Bound Price</label>
-            <input type="number" class="form-control" name="package-upper-bound-price" id="package-upper-bound-price" placeholder="Package Upper Bound Price">
+            <label for="package-price">Package Price</label>
+            <input type="number" class="form-control" name="package-price" id="package-price" placeholder="Package Price">
           </div>
           <div class="form-group">
             <label for="package-description">Package Description</label>

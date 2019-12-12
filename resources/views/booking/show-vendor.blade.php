@@ -30,11 +30,10 @@
               <th>Detail Description</th>
               <th>Booking / Event Description</th>
               <th>Confirmed</th>
-              <th>Paid</th>
             </thead>
             @if(count($booking_details) == 0)
             <tr>
-              <td colspan="7" class="text-center">No Data</td>
+              <td colspan="6" class="text-center">No Data</td>
             </tr>
             @endif
             @foreach($booking_details as $booking_detail)
@@ -52,18 +51,6 @@
                 <form method="PUT" action="/booking-detail/{{$booking_detail->booking_detail_id}}/set-confirmed">
                   <div class="form-group">
                     <button type="submit" class="main_btn btn btn-primary">Set as Confirmed</button>
-                  </div>
-                </form>
-              </td>
-              @endif
-              @if($booking_detail->booking_detail_is_paid == 1)
-              <td>Paid</td>
-              @else
-              <td>
-                {{-- Not Paid --}}
-                <form method="PUT" action="/booking-detail/{{$booking_detail->booking_detail_id}}/set-paid">
-                  <div class="form-group">
-                    <button type="submit" class="main_btn btn btn-primary">Set as Paid</button>
                   </div>
                 </form>
               </td>

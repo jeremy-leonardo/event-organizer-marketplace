@@ -16,7 +16,6 @@ class CreateBookingStatusTable extends Migration
         Schema::create('booking_status', function (Blueprint $table) {
             $table->bigIncrements('booking_status_id');
             $table->string('booking_status_name', 50);
-            $table->timestamps();
         });
     }
 

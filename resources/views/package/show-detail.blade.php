@@ -30,7 +30,7 @@
               </div>
                 <h4>{{$package->package_name}}</h4>
               <div class="text-wrap">
-                  <strong> Price Range : </strong> {{$package->package_lower_bound_price}} - {{$package->package_upper_bound_price}}
+                  <strong> Price : </strong> {{$package->package_price}}
               </div>
               <div class="text-wrap">
                 <p>{{$package->package_description}}</p>
@@ -111,7 +111,9 @@
             <div class="form-group" hidden>
               <input type="number" class="form-control" name="package" id="package" value={{$package->package_id}}>
             </div>
-
+            <div class="form-group" hidden>
+              <input type="number" class="form-control" name="booking-detail-price" id="booking-detail-price" value={{$package->package_price}}>
+            </div>
             <div class="form-group">
               <label for="booking">Booking</label><br>
               <select id="booking" name="booking">

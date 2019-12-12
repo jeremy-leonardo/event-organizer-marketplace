@@ -15,8 +15,7 @@ class PackageTableSeeder extends Seeder
             [
             'vendor_id' => 2, 
             'package_name' => 'The Magnifique Wedding Package', 
-            'package_upper_bound_price' => 90000000,
-            'package_lower_bound_price' => 130000000,
+            'package_price' => 90000000,
             'package_description' => 
                 'Cater perfectly for either an intimate wedding with only close friends and relatives as well as a majestic wedding at our Grand Ballroom, The Magnifique package features:
 
@@ -30,8 +29,7 @@ class PackageTableSeeder extends Seeder
             [
             'vendor_id' => 2, 
             'package_name' => 'Magic Moments Wedding Package', 
-            'package_upper_bound_price' => 120000000,
-            'package_lower_bound_price' => 150000000,
+            'package_price' => 120000000,
             'package_description' => 
                 'Magnificent arrangements at our Grand Ballroom, The Magic Moments package features:
 

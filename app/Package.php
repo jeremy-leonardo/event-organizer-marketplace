@@ -14,8 +14,7 @@ class Package extends Model
     [
         'vendor_id', 
         'package_name', 
-        'package_lower_bound_price', 
-        'package_upper_bound_price', 
+        'package_price', 
         'package_description',
         'package_is_active',
     ];

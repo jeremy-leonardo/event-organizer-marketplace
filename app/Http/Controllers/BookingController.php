@@ -139,6 +139,7 @@ class BookingController extends BaseController
         $booking_detail = BookingDetail::create([
             'booking_id' => $request['booking'],
             'package_id' => $request['package'],
+            'booking_detail_price' => $request['booking-detail-price'],
             'booking_detail_description' => $request['booking-detail-description'],
         ]);
         return redirect()->route('packagesPage');

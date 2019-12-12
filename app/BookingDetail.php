@@ -16,7 +16,7 @@ class BookingDetail extends Model
         'package_id', 
         'booking_detail_description', 
         'booking_detail_is_confirmed', 
-        'booking_detail_is_paid',
+        'booking_detail_price', 
     ];
 
 }

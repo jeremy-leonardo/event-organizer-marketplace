@@ -91,8 +91,7 @@ class PackageController extends BaseController
     {
         return Validator::make($data, [
             'package-name' => ['required', 'string', 'max:255'],
-            'package-lower-bound-price' => ['required'],
-            'package-upper-bound-price' => ['required'],
+            'package-price' => ['required'],
             'package-description' => ['required', 'string', 'max:255'],
         ]);
     }
@@ -107,8 +106,7 @@ class PackageController extends BaseController
         $package = Package::create([
             'vendor_id' => Auth::guard('vendor')->user()->vendor_id,
             'package_name' => $request['package-name'],
-            'package_lower_bound_price' => $request['package-lower-bound-price'],
-            'package_upper_bound_price' => $request['package-upper-bound-price'],
+            'package_price' => $request['package-price'],
             'package_description' => $request['package-description'],
         ]);
         return redirect()->intended('/vendor/packages');

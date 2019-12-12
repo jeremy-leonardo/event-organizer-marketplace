@@ -39,11 +39,10 @@
                   <th>Vendor</th>
                   <th>Detail Description</th>
                   <th>Confirmed</th>
-                  <th>Paid</th>
                 </thead>
                 @if(count($booking_details) == 0)
                 <tr>
-                  <td colspan="5" class="text-center">No Data</td>
+                  <td colspan="4" class="text-center">No Data</td>
                 </tr>
                 @endif
                 @foreach($booking_details as $booking_detail)
@@ -55,11 +54,6 @@
                   <td>Confirmed</td>
                   @else
                   <td>Not Confirmed</td>
-                  @endif
-                  @if($booking_detail->booking_detail_is_paid == 1)
-                  <td>Paid</td>
-                  @else
-                  <td>Not Paid</td>
                   @endif
                 </tr>
                 @endforeach
