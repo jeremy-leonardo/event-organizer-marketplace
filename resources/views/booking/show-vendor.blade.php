@@ -1,3 +1,5 @@
+{{-- SHOW VENDOR'S RECEIVED BOOKING DETAIL (NOT BOOKING) --}}
+
 @extends('layouts.app')
 
 @section('style')
@@ -11,7 +13,7 @@
       <div class="row justify-content-center">
         <div class="col-lg-12">
           <div class="main_title">
-            <h2><span>Bookings</span></h2>
+            <h2><span>Received Booking Details</span></h2>
             {{-- <p></p> --}}
           </div>
         </div>
@@ -19,46 +21,57 @@
       
       <!--================ BOOKINGS =================-->
       <div class="row">
-        @if(count($bookings) == 0)
-          <div class="col-12 text-center pb-5 mb-5">No Data</div>
-        @endif
-        @foreach($bookings as $booking)
-        <div class="col-lg-4 col-md-6">
-          <div class="single-blog">
-            <div class="thumb">
-              {{-- <img class="img-fluid" src="{{asset('img/placeholder/placeholder-image.png')}}" alt=""> --}}
-            </div>
-            <div class="short_details">
-              <div class="meta-top d-flex">
-              </div>
-              <a class="d-block" href="single-blog.html">
-                <h4>{{date("d-m-Y", strtotime($booking->event_date))}}</h4>
-              </a>
-              <div class="text-wrap">
-                <p>
-                  {{$booking->booking_description}}
-                </p>
-              </div>
-              {{-- <a href="#" class="blog_btn">Learn More <span class="ml-2 ti-arrow-right"></span></a> --}}
-            </div>
-          </div>
+       <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <th>Booking Event Date</th>
+              <th>Package Name</th>
+              <th>User</th>
+              <th>Detail Description</th>
+              <th>Booking / Event Description</th>
+              <th>Confirmed</th>
+              <th>Paid</th>
+            </thead>
+            @if(count($booking_details) == 0)
+            <tr>
+              <td colspan="7" class="text-center">No Data</td>
+            </tr>
+            @endif
+            @foreach($booking_details as $booking_detail)
+            <tr>
+              <td href="/booking/{{$booking_detail->booking_id}}">{{$booking_detail->event_date}}</td>
+              <td>{{$booking_detail->package_name}}</td>
+              <td>{{$booking_detail->user_name}}</td>
+              <td>{{$booking_detail->booking_detail_description}}</td>
+              <td>{{$booking_detail->booking_description}}</td>
+              @if($booking_detail->booking_is_confirmed == 1)
+              <td>Confirmed</td>
+              @else
+              <td>Not Confirmed
+                <form method="PUT" action="/booking-detail/{{$booking_detail->booking_detail_id}}/set-confirmed">
+                  <div class="form-group">
+                    <button type="submit" class="main_btn">Set as Confirmed</button>
+                  </div>
+                </form>
+              </td>
+              @endif
+              @if($booking_detail->booking_is_paid == 1)
+              <td>Paid</td>
+              @else
+              <td>Not Paid
+                <form method="PUT" action="/booking-detail/{{$booking_detail->booking_detail_id}}/set-paid">
+                  <div class="form-group">
+                    <button type="submit" class="main_btn">Set as Paid</button>
+                  </div>
+                </form>
+              </td>
+              @endif
+            </tr>
+            @endforeach
+          </table>
         </div>
-        @endforeach
       </div>
       <!--================ END BOOKINGS =================-->
-
-      @if(Auth::guard('user')->check())
-      <div class="row justify-content-center pt-3">
-        <div class="col-lg-12 text-center">
-          <div class="main_title pb-0">
-            <h2><span>Create Your Booking Now!</span></h2>
-          </div>
-          <a name="" id="" class="main_btn" href="/booking/create" role="button">
-            Create A Booking
-          </a>
-        </div>
-      </div>
-      @endif
 
     </div>
   </section>

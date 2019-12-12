@@ -58,13 +58,20 @@ class BookingController extends BaseController
 
         // $query = "SELECT * FROM booking";
         // $bookings = DB::select($query);
-        $bookings = DB::table('booking')
-        ->join('booking_detail','booking_detail.booking_id','=','booking.booking_id')
+
+        // $bookings = DB::table('booking')
+        // ->join('booking_detail','booking_detail.booking_id','=','booking.booking_id')
+        // ->join('package','package.package_id','=','booking_detail.package_id')
+        // ->where('vendor_id','=',Auth::guard('vendor')->user()->vendor_id)
+        // ->get();
+
+        $booking_details = DB::table('booking_detail')
+        ->join('booking','booking_detail.booking_id','=','booking.booking_id')
         ->join('package','package.package_id','=','booking_detail.package_id')
         ->where('vendor_id','=',Auth::guard('vendor')->user()->vendor_id)
         ->get();
 
-        return view('booking.show-vendor', ['bookings' => $bookings]);
+        return view('booking.show-vendor', ['booking_details' => $booking_details]);
     }
 
     public function showCreateBooking()

@@ -26,7 +26,7 @@
             @auth('vendor')
             <li>
               <a href="/vendor/bookings">
-                Check Received Booking Detail
+                Check Received Booking Details
               </a>
             </li>
             @endauth
