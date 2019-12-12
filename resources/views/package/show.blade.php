@@ -59,6 +59,7 @@
                   @php
                     if (strlen($package->package_description) > 200)
                       $package_desc = substr($package->package_description, 0, 197) . '...';  
+                    else $package_desc = $booking->booking_description;
                   @endphp
                   {{$package_desc}}
                 </p>

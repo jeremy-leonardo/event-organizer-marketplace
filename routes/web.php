@@ -53,3 +53,6 @@ Route::get('/booking/{booking_id}', 'BookingController@showBookingDetail')->name
 
 // WIP -- FOR DEVELOPMENT PURPOSE
 Route::get('/wip', function() { return view('booking.create');});
+
+// CONTACT US
+Route::get('/contact', function() { return view('contact');});

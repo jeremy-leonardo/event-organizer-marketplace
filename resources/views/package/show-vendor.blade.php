@@ -36,7 +36,12 @@
               </a>
               <div class="text-wrap">
                 <p>
-                  {{$package->package_description}}
+                  @php
+                    if (strlen($package->package_description) > 200)
+                      $package_desc = substr($package->package_description, 0, 197) . '...';  
+                    else $package_desc = $booking->booking_description;
+                  @endphp
+                  {{$package_desc}}
                 </p>
               </div>
               <a href="#" class="blog_btn">Learn More <span class="ml-2 ti-arrow-right"></span></a>
