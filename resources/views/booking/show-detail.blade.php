@@ -51,12 +51,12 @@
                   <td>{{$booking_detail->package_name}}</td>
                   <td>{{$booking_detail->vendor_name}}</td>
                   <td>{{$booking_detail->booking_detail_description}}</td>
-                  @if($booking_detail->booking_is_confirmed == 1)
+                  @if($booking_detail->booking_detail_is_confirmed == 1)
                   <td>Confirmed</td>
                   @else
                   <td>Not Confirmed</td>
                   @endif
-                  @if($booking_detail->booking_is_paid == 1)
+                  @if($booking_detail->booking_detail_is_paid == 1)
                   <td>Paid</td>
                   @else
                   <td>Not Paid</td>

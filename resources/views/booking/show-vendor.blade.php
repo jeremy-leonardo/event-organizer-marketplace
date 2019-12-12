@@ -44,24 +44,26 @@
               <td>{{$booking_detail->user_name}}</td>
               <td>{{$booking_detail->booking_detail_description}}</td>
               <td>{{$booking_detail->booking_description}}</td>
-              @if($booking_detail->booking_is_confirmed == 1)
+              @if($booking_detail->booking_detail_is_confirmed == 1)
               <td>Confirmed</td>
               @else
-              <td>Not Confirmed
+              <td>
+                {{-- Not Confirmed --}}
                 <form method="PUT" action="/booking-detail/{{$booking_detail->booking_detail_id}}/set-confirmed">
                   <div class="form-group">
-                    <button type="submit" class="main_btn">Set as Confirmed</button>
+                    <button type="submit" class="main_btn btn btn-primary">Set as Confirmed</button>
                   </div>
                 </form>
               </td>
               @endif
-              @if($booking_detail->booking_is_paid == 1)
+              @if($booking_detail->booking_detail_is_paid == 1)
               <td>Paid</td>
               @else
-              <td>Not Paid
+              <td>
+                {{-- Not Paid --}}
                 <form method="PUT" action="/booking-detail/{{$booking_detail->booking_detail_id}}/set-paid">
                   <div class="form-group">
-                    <button type="submit" class="main_btn">Set as Paid</button>
+                    <button type="submit" class="main_btn btn btn-primary">Set as Paid</button>
                   </div>
                 </form>
               </td>

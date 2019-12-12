@@ -68,6 +68,7 @@ class BookingController extends BaseController
         $booking_details = DB::table('booking_detail')
         ->join('booking','booking_detail.booking_id','=','booking.booking_id')
         ->join('package','package.package_id','=','booking_detail.package_id')
+        ->join('user','user.user_id','=','booking.user_id')
         ->where('vendor_id','=',Auth::guard('vendor')->user()->vendor_id)
         ->get();
 
@@ -157,6 +158,8 @@ class BookingController extends BaseController
                 abort(403); exit();
             }
             $booking_details = DB::table('booking_detail')
+                ->join('package','booking_detail.package_id','=','package.package_id')
+                ->join('vendor','package.vendor_id','=','vendor.vendor_id')
                 ->where('booking_id', $booking_id)
                 ->get();
             return view('booking.show-detail', ['booking' => $booking, 'booking_details' => $booking_details]);

@@ -59,3 +59,5 @@ Route::get('/contact', function() { return view('contact');});
 
 // WIP -- FOR DEVELOPMENT PURPOSE
 Route::get('/wip', function() { return view('booking.create');});
+// /booking-detail/{{$booking_detail->booking_detail_id}}/set-confirmed
+// /booking-detail/{{$booking_detail->booking_detail_id}}/set-paid
