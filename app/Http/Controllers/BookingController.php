@@ -70,6 +70,8 @@ class BookingController extends BaseController
         ->join('package','package.package_id','=','booking_detail.package_id')
         ->join('user','user.user_id','=','booking.user_id')
         ->where('vendor_id','=',Auth::guard('vendor')->user()->vendor_id)
+        ->where('booking_status_id','>',1)
+        ->where('booking_status_id','<',4)
         ->get();
 
         return view('booking.show-vendor', ['booking_details' => $booking_details]);
@@ -185,6 +187,30 @@ class BookingController extends BaseController
                 ->get();
             return view('booking.show-detail', ['booking' => $booking, 'booking_details' => $booking_details]);
         }
+    }
+
+    public function payBooking ($booking_id){
+        if(!Auth::guard('user')->check()){
+            abort(403); exit();
+        }
+        DB::table('booking')
+            ->where('booking_id', $booking_id)
+            ->where('user_id', Auth::guard('user')->user()->user_id)
+            ->update(['booking_status_id' => 2]);
+        return redirect()->back()->withInput('Booking paid successfully');
+        // or redirect to thank you page
+    }
+
+    public function confirmBookingDetail ($booking_detail_id){
+        if(!Auth::guard('vendor')->check()){
+            abort(403); exit();
+        }
+        DB::table('booking_detail')
+            ->where('booking_detail_id', $booking_detail_id)
+            ->where('vendor_id', Auth::guard('vendor')->user()->vendor_id)
+            ->update(['booking_detail_is_confirmed' => true]);
+        return redirect()->back()->withInput('Booking detail confirmed');
+        // or redirect to thank you page
     }
 
 }

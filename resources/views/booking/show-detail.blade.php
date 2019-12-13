@@ -39,12 +39,14 @@
                   <th>Vendor</th>
                   <th>Detail Description</th>
                   <th>Confirmed</th>
+                  <th>Price</th>
                 </thead>
                 @if(count($booking_details) == 0)
                 <tr>
-                  <td colspan="4" class="text-center">No Data</td>
+                  <td colspan="5" class="text-center">No Data</td>
                 </tr>
                 @endif
+                @php $total = 0; @endphp
                 @foreach($booking_details as $booking_detail)
                 <tr>
                   <td>{{$booking_detail->package_name}}</td>
@@ -55,8 +57,28 @@
                   @else
                   <td>Not Confirmed</td>
                   @endif
+                  <td class="text-right">{{number_format($booking_detail->booking_detail_price)}}</td>
                 </tr>
+                @php $total = $total + $booking_detail->booking_detail_price; @endphp
                 @endforeach
+                @if(count($booking_details) > 0)
+                <tr>
+                  <td colspan="4" class="text-right"><strong>Total : </strong></td>
+                  <td class="text-right">{{number_format($total)}}</td>
+                </tr>
+                <tr>
+                  <td colspan="5" class="text-right">
+                    <form method="PUT" action="/booking/{{$booking->booking_id}}/pay">
+                      {{ csrf_field() }}
+                      <meta name="csrf-token" content="{{ Session::token() }}">  
+                      </a>
+                      <div class="form-group">
+                        <button type="submit" class="main_btn">Checkout & Pay</button>
+                      </div>
+                    </form>
+                  </td>
+                </tr>
+                @endif
               </table>
             </div>
         </div>

@@ -12,10 +12,9 @@ class BookingStatusTableSeeder extends Seeder
     public function run()
     {
         DB::table('booking_status')->insert([
-            ['booking_status_name' => 'Pending Confirmation'],
-            ['booking_status_name' => 'Pending Payment'],
-            ['booking_status_name' => 'Paid - Booking In Process'],
-            // ['booking_status_name' => 'Done'],
+            ['booking_status_name' => 'Pending'],
+            ['booking_status_name' => 'Paid'],
+            ['booking_status_name' => 'Finished'],
             ['booking_status_name' => 'Cancelled'],
         ]);
     }
