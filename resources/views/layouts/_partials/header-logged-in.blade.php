@@ -1,7 +1,7 @@
-<div class="top_menu">
+<div class="top_menu" style="display:block;">
   <div class="container">
     <div class="row">
-      <div class="col-lg-7">
+      <div class="col-7">
         <div class="float-left">
           <!-- <p>Phone: +0123456789</p> -->
           {{-- <p>Support email: jeremy.leonardo@binus.ac.id</p> --}}
@@ -13,7 +13,7 @@
           @endauth
         </div>
       </div>
-      <div class="col-lg-5">
+      <div class="col-5">
         <div class="float-right">
           <ul class="right_side">
             @auth('user')
