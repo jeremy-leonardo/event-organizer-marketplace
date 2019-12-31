@@ -51,9 +51,11 @@
               </div>
             </div>
           </div>
+          @if(Auth::guard('user')->check())
           <div class="dropdown text-right pb-5 mb-5">
             <button class="main_btn" data-toggle="modal" data-target="#modelId">Add to Booking</button>
           </div>
+          @endif
         </div>
         @elseif($package->package_is_active == 0)
         <div class="col-lg-12 text-center">
@@ -85,7 +87,7 @@
   </section>
 
 
-  
+  @if(Auth::guard('user')->check())
   <!-- CREATE BOOKING DETAIL FORM -->
   <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -152,6 +154,7 @@
       </div>
     </div>
   </div>
+  @endif
 
   
 
