@@ -57,7 +57,8 @@ class PackageController extends BaseController
         ->where('vendor_id', Auth::guard('vendor')->user()->vendor_id)
         ->get();
 
-        return view('package.show-vendor', ['packages' => $packages]);
+        // return view('package.show-vendor', ['packages' => $packages]);
+        return view('package.show', ['packages' => $packages, 'is_from_my_package_menu' => true]);
     }
 
     public function showPackageDetail($package_id)
@@ -84,7 +85,51 @@ class PackageController extends BaseController
             abort(403); exit();
         }
 
-        return view('package.create');
+        return view('package.form');
+    }
+    
+    public function showEditPackage($package_id)
+    {
+        if(!Auth::guard('vendor')->check()){
+            abort(403); exit();
+        }
+
+        $package = DB::table('package')
+        ->where('package_id', $package_id)
+        ->get()->first();
+
+        if($package->vendor_id != Auth::guard('vendor')->user()->vendor_id){
+            abort(403); exit();
+        }
+
+        return view('package.form', ['package' => $package, 'edit_mode' => true]);
+    }
+
+    public function updatePackage($package_id, Request $request)
+    {
+        if(!Auth::guard('vendor')->check()){
+            abort(403); exit();
+        }
+
+        // $current_package = DB::table('package')
+        // ->where('package_id', $package_id)
+        // ->get()->first();
+        $package = Package::find($package_id);
+
+
+        if($package->vendor_id != Auth::guard('vendor')->user()->vendor_id){
+            abort(403); exit();
+        }
+
+        $this->packageValidator($request->all())->validate();
+
+        $package->vendor_id = Auth::guard('vendor')->user()->vendor_id;
+        $package->package_name = $request['package-name'];
+        $package->package_price = $request['package-price'];
+        $package->package_description = $request['package-description'];
+        $package->save();
+
+        return redirect()->intended('/vendor/packages');
     }
 
     protected function packageValidator(array $data)
@@ -92,7 +137,7 @@ class PackageController extends BaseController
         return Validator::make($data, [
             'package-name' => ['required', 'string', 'max:255'],
             'package-price' => ['required'],
-            'package-description' => ['required', 'string', 'max:255'],
+            'package-description' => ['required', 'string', 'max:1000'],
         ]);
     }
 

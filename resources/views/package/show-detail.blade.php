@@ -17,7 +17,7 @@
         </div>
       </div>
       
-      <!--================ PACKAGES =================-->
+      <!--================ PACKAGE DETAIL =================-->
       <div class="row">
         @if($package->package_is_active == 1)
         <div class="col-lg-12 col-md-12 pb-0 mb-0">
@@ -55,6 +55,12 @@
           <div class="dropdown text-right pb-5 mb-5">
             <button class="main_btn" data-toggle="modal" data-target="#modelId">Add to Booking</button>
           </div>
+          @elseif(Auth::guard('vendor')->check() && $package->vendor_id == Auth::guard('vendor')->user()->vendor_id)
+          <div class="text-right pb-5 mb-5">
+            <a name="" id="" class="main_btn" href="/package/{{$package->package_id}}/edit" role="button">
+              Edit Package
+            </a>
+          </div>
           @endif
         </div>
         @elseif($package->package_is_active == 0)
@@ -66,12 +72,12 @@
         </div>
         @endif
       </div>
-      <!--================ END PACKAGES =================-->
+      <!--================ END PACKAGE DETAIL =================-->
 
       @if(Auth::guard('user')->check() && $package->package_is_active == 1)
-      <div class="row justify-content-center pt-5 mt-5">
-        <div class="col-lg-12 text-center">
-          <div class="main_title pb-0">
+      <div class="row">
+        <div class="col-lg-12 text-right pt-5 mt-5">
+          <div class="main_title pb-0 text-right">
             <h2><span>Create Your Booking Now!</span></h2>
             <p>You'll need to create a booking first before taking a package from this page.</p>
             <p>Create one if you haven't!</p>

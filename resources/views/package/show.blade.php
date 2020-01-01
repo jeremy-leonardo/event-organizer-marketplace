@@ -11,8 +11,11 @@
       <div class="row justify-content-center">
         <div class="col-lg-12">
           <div class="main_title">
+            @if($is_from_my_package_menu ?? false)
+            <h2><span>My Packages</span></h2>
+            @else
             <h2><span>Packages</span></h2>
-            {{-- <p></p> --}}
+            @endif
           </div>
         </div>
       </div>
@@ -23,49 +26,59 @@
           <div class="col-12 text-center pb-5 mb-5">No Data</div>
         @endif
         @foreach($packages as $package)
-        <div class="col-lg-4 col-md-6 m-3 p-3 card">
-          <div class="single-blog">
-            <div class="thumb">
-              <img class="img-fluid" src="{{asset('img/placeholder/placeholder-image.png')}}" alt="">
-            </div>
-            <div class="short_details">
-              <div class="meta-top d-flex">
-                @php
-                  // $vendor_query = '
-                  //   SELECT vendor_id, vendor_name, vendor_type_name, vendor.vendor_type_id
-                  //   FROM vendor JOIN vendor_type
-                  //   WHERE vendor_id = '.$package->vendor_id.' 
-                  //   LIMIT 1 ;
-                  // ';
-                  // $vendor = DB::select($vendor_query)[0];
-                  // $vendor = App\Vendor::where('vendor_id', $package->vendor_id)->join('vendor_type', 'vendor_type.vendor_type_id', '=', 'vendor.vendor_type_id')->select('vendor_id','vendor_name','vendor.vendor_type_id')->first();
-                  $vendor = DB::table('vendor')
-                  ->where('vendor_id', $package->vendor_id)
-                  ->join('vendor_type', 'vendor_type.vendor_type_id', '=', 'vendor.vendor_type_id')
-                  ->select('vendor_id','vendor_name','vendor.vendor_type_id')
-                  ->first();
-               @endphp
-                By&nbsp;<a href="#">{{$vendor->vendor_name}}
-                  @if($vendor->vendor_type_id != 1)
-                    <span> &nbsp; | &nbsp; {{$vendor->vendor_type_name}} </span>
-                  @endif
-                </a>
+        <div class="col-lg-4 col-md-6 p-3">
+          <div class="col-12 card p-3"> 
+
+            <div class="single-blog">
+              <div class="thumb">
+                <img class="img-fluid" src="{{asset('img/placeholder/placeholder-image.png')}}" alt="">
               </div>
-              <a class="d-block" href="/package/{{$package->package_id}}">
-                <h4>{{$package->package_name}}</h4>
-              </a>
-              <div class="text-wrap">
-                <p>
+              <div class="short_details">
+                <div class="meta-top d-flex">
                   @php
-                    if (strlen($package->package_description) > 200)
-                      $package_desc = substr($package->package_description, 0, 197) . '...';  
-                    else $package_desc = $booking->booking_description;
+                    // $vendor_query = '
+                    //   SELECT vendor_id, vendor_name, vendor_type_name, vendor.vendor_type_id
+                    //   FROM vendor JOIN vendor_type
+                    //   WHERE vendor_id = '.$package->vendor_id.' 
+                    //   LIMIT 1 ;
+                    // ';
+                    // $vendor = DB::select($vendor_query)[0];
+                    // $vendor = App\Vendor::where('vendor_id', $package->vendor_id)->join('vendor_type', 'vendor_type.vendor_type_id', '=', 'vendor.vendor_type_id')->select('vendor_id','vendor_name','vendor.vendor_type_id')->first();
+                    $vendor = DB::table('vendor')
+                    ->where('vendor_id', $package->vendor_id)
+                    ->join('vendor_type', 'vendor_type.vendor_type_id', '=', 'vendor.vendor_type_id')
+                    ->select('vendor_id','vendor_name','vendor.vendor_type_id')
+                    ->first();
+                @endphp
+                  By&nbsp;<a href="#">{{$vendor->vendor_name}}
+                    @if($vendor->vendor_type_id != 1)
+                      <span> &nbsp; | &nbsp; {{$vendor->vendor_type_name}} </span>
+                    @endif
+                  </a>
+                </div>
+                <a class="d-block" href="/package/{{$package->package_id}}">
+                  @php
+                    if (strlen($package->package_description) > 40)
+                      $package_desc = substr($package->package_description, 0, 37) . '...';  
+                    else $package_desc = $package->package_description;
                   @endphp
-                  {{$package_desc}}
-                </p>
+                  <h4>{{$package->package_name}}</h4>
+                </a>
+                <div class="text-wrap" style="min-height: 40px;">
+                  <p>
+                    {{-- @php
+                      if (strlen($package->package_description) > 200)
+                        $package_desc = substr($package->package_description, 0, 197) . '...';  
+                      else $package_desc = $package->package_description;
+                    @endphp
+                    {{$package_desc}} --}}
+                    Rp {{number_format($package->package_price)}}
+                  </p>
+                </div>
+                <a href="/package/{{$package->package_id}}" class="blog_btn">@if($is_from_my_package_menu ?? false) View Detail @else Learn More @endif<span class="ml-2 ti-arrow-right"></span></a>
               </div>
-              <a href="/package/{{$package->package_id}}" class="blog_btn">Learn More <span class="ml-2 ti-arrow-right"></span></a>
             </div>
+
           </div>
         </div>
         @endforeach
