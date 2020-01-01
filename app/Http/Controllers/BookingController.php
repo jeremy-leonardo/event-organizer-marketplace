@@ -42,6 +42,7 @@ class BookingController extends BaseController
         // $query = "SELECT * FROM booking";
         // $bookings = DB::select($query);
         $bookings = DB::table('booking')
+        ->join('booking_status','booking.booking_status_id','=','booking_status.booking_status_id')
         ->where('user_id','=',Auth::guard('user')->user()->user_id)
         ->get();
 
@@ -93,7 +94,17 @@ class BookingController extends BaseController
         return Validator::make($data, [
             'event-date' => ['required','date_format:Y-m-d'],
             'city' => ['required'],
-            'booking-description' => ['required','max:255'],
+            'booking-description' => ['required','max:1000'],
+        ]);
+    }
+
+    protected function bookingDetailValidator(array $data)
+    {
+        return Validator::make($data, [
+            'booking' => ['required'],
+            'package' => ['required'],
+            'booking-detail-price' => ['required'],
+            'booking-detail-description' => ['required','max:1000'],
         ]);
     }
 
@@ -138,6 +149,9 @@ class BookingController extends BaseController
             $error = (object)['code' => '500', 'message' => 'The same package already exists in that booking'];
             return view('error',['error' => $error]);
         }
+
+        $this->bookingDetailValidator($request->all())->validate();
+
         $booking_detail = BookingDetail::create([
             'booking_id' => $request['booking'],
             'package_id' => $request['package'],
@@ -197,7 +211,8 @@ class BookingController extends BaseController
             ->where('booking_id', $booking_id)
             ->where('user_id', Auth::guard('user')->user()->user_id)
             ->update(['booking_status_id' => 2]);
-        return redirect()->back()->withInput('Booking paid successfully');
+        return redirect()->back()->withInput(['message' => 'Booking paid successfully']);
+        // msg blm tampil d view
         // or redirect to thank you page
     }
 
@@ -209,7 +224,8 @@ class BookingController extends BaseController
             ->where('booking_detail_id', $booking_detail_id)
             ->where('vendor_id', Auth::guard('vendor')->user()->vendor_id)
             ->update(['booking_detail_is_confirmed' => true]);
-        return redirect()->back()->withInput('Booking detail confirmed');
+        return redirect()->back()->withInput(['message' => 'Booking detail confirmed']);
+        // msg blm tampil d view
         // or redirect to thank you page
     }
 

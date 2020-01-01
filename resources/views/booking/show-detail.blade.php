@@ -66,18 +66,20 @@
                   <td colspan="4" class="text-right"><strong>Total : </strong></td>
                   <td class="text-right">{{number_format($total)}}</td>
                 </tr>
+                @if($booking->booking_status_id == 1)
                 <tr>
                   <td colspan="5" class="text-right">
-                    <form method="PUT" action="/booking/{{$booking->booking_id}}/pay">
+                    <form method="POST" action="/booking/{{$booking->booking_id}}/pay">
                       {{ csrf_field() }}
+                      @method('PUT')
                       <meta name="csrf-token" content="{{ Session::token() }}">  
-                      </a>
                       <div class="form-group">
                         <button type="submit" class="main_btn">Checkout & Pay</button>
                       </div>
                     </form>
                   </td>
                 </tr>
+                @endif
                 @endif
               </table>
             </div>

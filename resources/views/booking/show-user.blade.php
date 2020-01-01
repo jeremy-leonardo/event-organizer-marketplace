@@ -32,9 +32,12 @@
               <div class="meta-top d-flex">
               </div>
               <a class="d-block" href="/booking/{{$booking->booking_id}}">
-                <h4>{{date("d-m-Y", strtotime($booking->event_date))}}</h4>
+                <h4 class="pb-0 mb-0">Booking {{date("d-m-Y", strtotime($booking->event_date))}}</h4>
               </a>
               <div class="text-wrap">
+                <p class="pb-3">
+                  <span class="badge badge-secondary">{{$booking->booking_status_name}}</span>
+                </p>
                 <p>
                   @php
                   if (strlen($booking->booking_description) > 200)
