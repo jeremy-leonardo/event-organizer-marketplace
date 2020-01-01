@@ -53,7 +53,7 @@
           </div>
           @if(Auth::guard('user')->check())
           <div class="dropdown text-right pb-5 mb-5">
-            <button class="main_btn" data-toggle="modal" data-target="#modelId">Add to Booking</button>
+            <button id="booking-detail-modal-btn" class="main_btn" data-toggle="modal" data-target="#modelId">Add to Booking</button>
           </div>
           @elseif(Auth::guard('vendor')->check() && $package->vendor_id == Auth::guard('vendor')->user()->vendor_id)
           <div class="text-right pb-5 mb-5">
@@ -76,8 +76,8 @@
 
       @if(Auth::guard('user')->check() && $package->package_is_active == 1)
       <div class="row">
-        <div class="col-lg-12 text-right pt-5 mt-5">
-          <div class="main_title pb-0 text-right">
+        <div class="col-lg-12 text-center pt-5 mt-5 pb-3">
+          <div class="main_title pb-0 mb-3 text-center">
             <h2><span>Create Your Booking Now!</span></h2>
             <p>You'll need to create a booking first before taking a package from this page.</p>
             <p>Create one if you haven't!</p>
@@ -139,10 +139,6 @@
               <textarea class="form-control" name="booking-detail-description" id="booking-detail-description" aria-describedby="help-booking-detail-description" placeholder="Booking Detail Description"></textarea>
               <small id="help-booking-detail-description" class="form-text text-muted">Please describe your preferences or other information for the vendor</small>
             </div>
-  
-            <div class="form-group">
-              <button type="submit" class="main_btn">Submit</button>
-            </div>
 
             @if($errors->any())
             <div class="alert alert-danger alert-dismissible">
@@ -152,6 +148,10 @@
                 @endforeach
             </div>
             @endif
+  
+            <div class="form-group">
+              <button type="submit" class="main_btn">Submit</button>
+            </div>
   
           </form>
           @endif
@@ -167,6 +167,12 @@
 @endsection  
 
 @section('script')
+
+<script>
+  if({{$errors->any()}}){
+    $("#booking-detail-modal-btn").click();
+  }
+</script>
 
 @endsection
 
