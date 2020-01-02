@@ -50,7 +50,8 @@ Route::get('/vendor/bookings', 'BookingController@showVendorBookings')->name('ve
 Route::post('/booking-detail/create', 'BookingController@createBookingDetail');
 Route::get('/booking/{booking_id}', 'BookingController@showBookingDetail')->name('bookingDetailPage');
 Route::put('/booking/{booking_id}/pay', 'BookingController@payBooking');
-Route::put('/booking-detail/{$booking_detail->booking_detail_id}/set-confirmed', 'BookingController@setBookingDetailAsConfirmed');
+Route::put('/booking-detail/{booking_detail_id}/confirm', 'BookingController@confirmBookingDetail');
+Route::put('/booking-detail/{booking_detail_id}/reject', 'BookingController@rejectBookingDetail');
 
 // CONTACT US
 Route::get('/contact', function() { return view('contact');});
@@ -58,5 +59,3 @@ Route::get('/contact', function() { return view('contact');});
 
 // WIP -- FOR DEVELOPMENT PURPOSE
 Route::get('/wip', function() { return view('booking.create');});
-// /booking-detail/{{$booking_detail->booking_detail_id}}/set-confirmed
-// /booking/{{$booking->booking_id}}/pay

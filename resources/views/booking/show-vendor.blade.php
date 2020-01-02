@@ -29,7 +29,7 @@
               <th>User</th>
               <th>Detail Description</th>
               <th>Booking / Event Description</th>
-              <th>Confirmed</th>
+              <th>Confirmation Status</th>
             </thead>
             @if(count($booking_details) == 0)
             <tr>
@@ -45,14 +45,41 @@
               <td>{{$booking_detail->booking_description}}</td>
               @if($booking_detail->booking_detail_is_confirmed == 1)
               <td>Confirmed</td>
+              @elseif($booking_detail->booking_detail_is_confirmed == -1)
+              <td>Rejected</td>
               @else
               <td>
                 {{-- Not Confirmed --}}
-                <form method="PUT" action="/booking-detail/{{$booking_detail->booking_detail_id}}/set-confirmed">
+                {{-- <form method="POST" action="/booking-detail/{{$booking_detail->booking_detail_id}}/set-confirmed">
+                  @method('PUT')
                   <div class="form-group">
-                    <button type="submit" class="main_btn btn btn-primary">Set as Confirmed</button>
+                    <button type="submit" class="main_btn btn">Set as Confirmed</button>
                   </div>
-                </form>
+                </form> --}}
+                <div class="dropdown">
+                  <button class="main_btn btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Action
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <form method="POST" action="/booking-detail/{{$booking_detail->booking_detail_id}}/confirm">
+                      {{ csrf_field() }}
+                      <meta name="csrf-token" content="{{ Session::token() }}">  
+                      @method('PUT')
+                      <div class="form-group pb-0 mb-0 pt-0 mt-0">
+                        <button type="submit" class="dropdown-item">Confirm</button>
+                      </div>
+                    </form>
+                    {{-- <form method="POST" action="/booking-detail/{{$booking_detail->booking_detail_id}}/reject">
+                      {{ csrf_field() }}
+                      <meta name="csrf-token" content="{{ Session::token() }}">  
+                      @method('PUT')
+                      <div class="form-group pb-0 mb-0 pt-0 mt-0">
+                        <button type="submit" class="dropdown-item">Reject</button>
+                      </div>
+                    </form> --}}
+                  </div>
+                </div>
+                
               </td>
               @endif
             </tr>

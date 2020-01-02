@@ -42,9 +42,9 @@ class BookingController extends BaseController
         // $query = "SELECT * FROM booking";
         // $bookings = DB::select($query);
         $bookings = DB::table('booking')
-        ->join('booking_status','booking.booking_status_id','=','booking_status.booking_status_id')
-        ->where('user_id','=',Auth::guard('user')->user()->user_id)
-        ->get();
+            ->join('booking_status','booking.booking_status_id','=','booking_status.booking_status_id')
+            ->where('user_id','=',Auth::guard('user')->user()->user_id)
+            ->get();
 
         return view('booking.show-user', ['bookings' => $bookings]);
     }
@@ -67,13 +67,13 @@ class BookingController extends BaseController
         // ->get();
 
         $booking_details = DB::table('booking_detail')
-        ->join('booking','booking_detail.booking_id','=','booking.booking_id')
-        ->join('package','package.package_id','=','booking_detail.package_id')
-        ->join('user','user.user_id','=','booking.user_id')
-        ->where('vendor_id','=',Auth::guard('vendor')->user()->vendor_id)
-        ->where('booking_status_id','>',1)
-        ->where('booking_status_id','<',4)
-        ->get();
+            ->join('booking','booking_detail.booking_id','=','booking.booking_id')
+            ->join('package','package.package_id','=','booking_detail.package_id')
+            ->join('user','user.user_id','=','booking.user_id')
+            ->where('vendor_id','=',Auth::guard('vendor')->user()->vendor_id)
+            ->where('booking_status_id','>',1)
+            ->where('booking_status_id','<',4)
+            ->get();
 
         return view('booking.show-vendor', ['booking_details' => $booking_details]);
     }
@@ -220,10 +220,65 @@ class BookingController extends BaseController
         if(!Auth::guard('vendor')->check()){
             abort(403); exit();
         }
+
+        $package = DB::table('package')
+            ->join('booking_detail', 'booking_detail.package_id', "=", 'package.package_id')
+            ->where('vendor_id', Auth::guard('vendor')->user()->vendor_id)
+            ->get()->first();
+        
+        if(!$package){
+            abort(403); exit();
+        }
+
         DB::table('booking_detail')
             ->where('booking_detail_id', $booking_detail_id)
+            ->update(['booking_detail_is_confirmed' => 1]);
+
+        $booking = DB::table('booking')
+            ->join('booking_detail', 'booking_detail.booking_id', '=', 'booking.booking_id')
+            ->where('booking_detail_id', $booking_detail_id)
+            ->get()->first();
+
+        $booking_details = DB::table('booking_detail')
+            ->where('booking_id', '=', $booking->booking_id)
+            ->get();
+
+        $all_booking_detail_is_confirmed = true;
+        foreach ($booking_details as $booking_detail) {
+            if($booking_detail->booking_detail_is_confirmed != 1){
+                $all_booking_detail_is_confirmed = false;
+                break;
+            }
+        }
+
+        if($all_booking_detail_is_confirmed){
+            DB::table('booking')
+                ->where('booking_id', $booking->booking_id)
+                ->update(['booking_status_id' => 3]);
+        }
+
+        return redirect()->back()->withInput(['message' => 'Booking detail confirmed']);
+        // msg blm tampil d view
+        // or redirect to thank you page
+    }
+
+    public function rejectBookingDetail ($booking_detail_id){
+        if(!Auth::guard('vendor')->check()){
+            abort(403); exit();
+        }
+
+        $package = DB::table('package')
+            ->join('booking_detail', 'booking_detail.package_id', "=", 'package.package_id')
             ->where('vendor_id', Auth::guard('vendor')->user()->vendor_id)
-            ->update(['booking_detail_is_confirmed' => true]);
+            ->get()->first();
+        
+        if(!$package){
+            abort(403); exit();
+        }
+
+        DB::table('booking_detail')
+            ->where('booking_detail_id', $booking_detail_id)
+            ->update(['booking_detail_is_confirmed' => -1]);
         return redirect()->back()->withInput(['message' => 'Booking detail confirmed']);
         // msg blm tampil d view
         // or redirect to thank you page

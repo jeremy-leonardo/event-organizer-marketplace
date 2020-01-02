@@ -22,6 +22,7 @@ class CreateBookingDetailTable extends Migration
             $table->text('booking_detail_description')->default('');
             $table->bigInteger('booking_detail_price');
             $table->boolean('booking_detail_is_confirmed')->default(false);
+            // $table->smallInteger('booking_detail_is_confirmed')->default(0);
             $table->timestamps();
         });
     }
