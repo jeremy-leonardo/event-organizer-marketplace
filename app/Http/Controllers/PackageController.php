@@ -38,9 +38,28 @@ class PackageController extends BaseController
 
         // $query = "SELECT * FROM package";
         // $packages = DB::select($query);
-        $packages = DB::table('package')->where('package_is_active', 1)->get();
+        $packages = DB::table('package')
+            ->join('vendor', 'vendor.vendor_id', '=', 'package.vendor_id')
+            ->where('package_is_active', 1)
+            ->get();
 
-        return view('package.show', ['packages' => $packages]);
+        foreach ($packages as $package) {
+            if($package->vendor_type_id == 1){
+                $img_path = '/img/package/confetti.jpg';
+            }else if($package->vendor_type_id == 2){
+                $img_path = '/img/package/circle-event.jpg';
+            }else if($package->vendor_type_id == 3){
+                $img_path = '/img/package/food-and-beverages.jpg';
+            }else if($package->vendor_type_id == 4){
+                $img_path = '/img/package/dj.jpg';
+            }else if($package->vendor_type_id == 5){
+                $img_path = '/img/package/decoration.jpg';
+            }else if($package->vendor_type_id == 6){
+                $img_path = '/img/package/tablewares.jpg';
+            }
+        }
+
+        return view('package.show', ['packages' => $packages, 'img_path' => $img_path]);
     }
 
     public function showVendorPackages()

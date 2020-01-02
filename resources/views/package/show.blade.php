@@ -31,7 +31,8 @@
 
             <div class="single-blog">
               <div class="thumb">
-                <img class="img-fluid" src="{{asset('img/placeholder/placeholder-image.png')}}" alt="">
+                {{-- <img class="img-fluid" src="{{asset('img/placeholder/placeholder-image.png')}}" alt="package image"> --}}
+                <img class="img-fluid" src="{{asset($img_path)}}" alt="package image">
               </div>
               <div class="short_details">
                 <div class="meta-top d-flex">
