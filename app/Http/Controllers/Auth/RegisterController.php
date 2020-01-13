@@ -57,7 +57,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:user,user_email'],
             'password' => ['required', 'string', 'min:6', 'max:64'],
             'password-confirmation' => ['required', 'same:password'],
-            'phone-number' => ['required', 'numeric', 'min:3', 'max:20', 'unique:user,user_phone_number'],
+            'phone-number' => ['required', 'numeric', 'max:999999999999999999', 'unique:user,user_phone_number'],
         ]);
     }
 
@@ -68,7 +68,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:vendor,vendor_email'],
             'password' => ['required', 'string', 'min:6', 'max:64'],
             'password-confirmation' => ['required', 'same:password'],
-            'phone-number' => ['required', 'numeric', 'min:3', 'max:20', 'unique:vendor,vendor_phone_number'],
+            'phone-number' => ['required', 'numeric', 'max:999999999999999999', 'unique:vendor,vendor_phone_number'],
         ]);
     }
 

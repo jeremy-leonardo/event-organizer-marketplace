@@ -54,8 +54,8 @@ class UserVendorController extends BaseController
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:user,user_email'],
-            'phone-number' => ['required', 'numeric', 'min:3', 'max:20', 'unique:user,user_phone_number'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'phone-number' => ['required', 'numeric', 'max:999999999999999999'],
         ]);
     }
 
@@ -94,8 +94,8 @@ class UserVendorController extends BaseController
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:vendor,vendor_email'],
-            'phone-number' => ['required', 'numeric', 'min:3', 'max:20', 'unique:vendor,vendor_phone_number'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'phone-number' => ['required', 'numeric', 'max:999999999999999999'],
             'vendor-type' => ['required'],
             'city' => ['required'],
         ]);
