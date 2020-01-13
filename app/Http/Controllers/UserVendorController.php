@@ -63,12 +63,13 @@ class UserVendorController extends BaseController
     {
         $this->userUpdateValidator($request->all())->validate();
         DB::table('user')
-            ->where('user_id', $user->user_id)
+            ->where('user_id', $user_id)
             ->update([
                 'user_name' => $request['name'],
                 'user_email' => $request['email'],
                 'user_phone_number' => $request['phone-number'],
             ]);
+        return back();
     }
 
     protected function showEditVendor($vendor_id)
@@ -105,7 +106,7 @@ class UserVendorController extends BaseController
     {
         $this->vendorUpdateValidator($request->all())->validate();
         DB::table('vendor')
-            ->where('vendor_id', $vendor->vendor_id)
+            ->where('vendor_id', $vendor_id)
             ->update([
                 'vendor_name' => $request['name'],
                 'vendor_email' => $request['email'],
@@ -113,6 +114,7 @@ class UserVendorController extends BaseController
                 'vendor_type_id' => $request['vendor-type'],
                 'city_id' => $request['city'],
             ]);
+        return back();
     }
 
 }
