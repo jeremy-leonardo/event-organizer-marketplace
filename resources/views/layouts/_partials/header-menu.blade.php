@@ -113,13 +113,18 @@
               </li>
             </ul> -->
             <ul class="nav navbar-nav navbar-right right_nav pull-right">
+              @if(!Auth::guard('user')->check() && !Auth::guard('vendor')->check())
               <li class="nav-item">
-                @if(!Auth::guard('user')->check() && !Auth::guard('vendor')->check())
                 <a href="/login" class="nav-link">
-                  <i class="ti-user" aria-hidden="true"></i><span> Login</span>
+                  <i class="ti-user" aria-hidden="true"></i><span>&nbsp;Login &nbsp;&nbsp;</span>
                 </a>
-                @endif
               </li>
+              <li class="nav-item">
+                <a href="/register" class="nav-link">
+                  <span>Sign Up</span>
+                </a>
+              </li>
+              @endif
             </ul>
           </div>
         </div>

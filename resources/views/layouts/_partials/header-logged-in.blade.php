@@ -6,10 +6,14 @@
           <!-- <p>Phone: +0123456789</p> -->
           {{-- <p>Support email: jeremy.leonardo@binus.ac.id</p> --}}
           @auth('user')
-            <p>Hello, {{Auth::guard('user')->user()->user_name}}</p>
+          <p>Hello, <a href="{{url('/user/' . Auth::guard('user')->user()->user_id . '/edit')}}"
+            > {{Auth::guard('user')->user()->user_name}}</a></p>
+          </a>
           @endauth
           @auth('vendor')
-            <p>Hello, {{Auth::guard('vendor')->user()->vendor_name}}</p>
+            <p>Hello, <a href="{{url('/vendor/' . Auth::guard('vendor')->user()->vendor_id . '/edit')}}"
+              > {{Auth::guard('vendor')->user()->vendor_name}}</a></p>
+            </a>
           @endauth
         </div>
       </div>
@@ -26,7 +30,7 @@
             @auth('vendor')
             <li>
               <a href="/vendor/bookings">
-                Check Received Booking Details
+                Received Booking Details
               </a>
             </li>
             @endauth

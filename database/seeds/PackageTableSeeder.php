@@ -55,7 +55,7 @@ class PackageTableSeeder extends Seeder
             'package_is_active' => 1,
             ],
             [
-            'vendor_id' => 4, 
+            'vendor_id' => 5, 
             'package_name' => 'MAM EO Package A', 
             'package_price' => 5300000,
             'package_description' => 

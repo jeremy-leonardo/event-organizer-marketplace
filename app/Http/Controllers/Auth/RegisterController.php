@@ -60,6 +60,7 @@ class RegisterController extends Controller
             'phone-number' => ['required', 'numeric', 'min:3', 'max:20', 'unique:user,user_phone_number'],
         ]);
     }
+
     protected function vendorValidator(array $data)
     {
         return Validator::make($data, [
@@ -110,7 +111,7 @@ class RegisterController extends Controller
         return view('auth.register.index', ['register_as' => 'user']);
     }
 
-    public function showvendorRegister()
+    public function showVendorRegister()
     {
         return view('auth.register.index', ['register_as' => 'vendor']);
     }

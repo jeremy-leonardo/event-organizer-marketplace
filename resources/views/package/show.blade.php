@@ -32,7 +32,7 @@
             <div class="single-blog">
               <div class="thumb">
                 {{-- <img class="img-fluid" src="{{asset('img/placeholder/placeholder-image.png')}}" alt="package image"> --}}
-                <img class="img-fluid" src="{{asset($img_path)}}" alt="package image">
+                <img class="img-fluid" src="{{asset($package->img_path)}}" alt="package image" style="height:190px;">
               </div>
               <div class="short_details">
                 <div class="meta-top d-flex">
@@ -48,7 +48,6 @@
                     $vendor = DB::table('vendor')
                     ->where('vendor_id', $package->vendor_id)
                     ->join('vendor_type', 'vendor_type.vendor_type_id', '=', 'vendor.vendor_type_id')
-                    ->select('vendor_id','vendor_name','vendor.vendor_type_id')
                     ->first();
                 @endphp
                   By&nbsp;<a href="#">{{$vendor->vendor_name}}

@@ -45,21 +45,21 @@ class PackageController extends BaseController
 
         foreach ($packages as $package) {
             if($package->vendor_type_id == 1){
-                $img_path = '/img/package/confetti.jpg';
+                $package->img_path = '/img/package/confetti.jpg';
             }else if($package->vendor_type_id == 2){
-                $img_path = '/img/package/circle-event.jpg';
+                $package->img_path = '/img/package/circle-event.jpg';
             }else if($package->vendor_type_id == 3){
-                $img_path = '/img/package/food-and-beverages.jpg';
+                $package->img_path = '/img/package/food-and-beverages.jpg';
             }else if($package->vendor_type_id == 4){
-                $img_path = '/img/package/dj.jpg';
+                $package->img_path = '/img/package/dj.jpg';
             }else if($package->vendor_type_id == 5){
-                $img_path = '/img/package/decoration.jpg';
+                $package->img_path = '/img/package/decoration.jpg';
             }else if($package->vendor_type_id == 6){
-                $img_path = '/img/package/tablewares.jpg';
+                $package->img_path = '/img/package/tablewares.jpg';
             }
         }
 
-        return view('package.show', ['packages' => $packages, 'img_path' => $img_path]);
+        return view('package.show', ['packages' => $packages]);
     }
 
     public function showVendorPackages()

@@ -29,6 +29,10 @@ Route::get('/user/register', 'Auth\RegisterController@showUserRegister')->name('
 Route::post('/user/register', 'Auth\RegisterController@createUser');
 Route::get('/vendor/register', 'Auth\RegisterController@showVendorRegister')->name('registerVendorPage');
 Route::post('/vendor/register', 'Auth\RegisterController@createVendor');
+Route::get('/user/{user_id}/edit', 'UserVendorController@showEditUser');
+Route::put('/user/{user_id}/edit', 'UserVendorController@updateUser');
+Route::get('/vendor/{vendor_id}/edit', 'UserVendorController@showEditVendor');
+Route::put('/vendor/{vendor_id}/edit', 'UserVendorController@updateVendor');
 
 // LOGOUT
 Route::get('/logout', 'Auth\LoginController@logout');
