@@ -37,7 +37,7 @@
           </div><br><br>
           <div class="form-group">
             <label for="booking-description">Booking Description</label>
-            <textarea class="form-control" name="booking-description" id="booking-description" aria-describedby="help-booking-description" placeholder="Package Description"></textarea>
+            <textarea class="form-control" name="booking-description" id="booking-description" aria-describedby="help-booking-description" placeholder="Booking Description"></textarea>
             <small id="help-booking-description" class="form-text text-muted">Please describe the event booking as clear as possible</small>
           </div>
           <div class="form-group">

@@ -1,4 +1,4 @@
-<div class="top_menu" style="display:block;">
+<div class="top_menu" style="display:block; height:50px!important;">
   <div class="container">
     <div class="row">
       <div class="col-7">
