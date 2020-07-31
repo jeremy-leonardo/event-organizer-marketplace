@@ -2,6 +2,14 @@
 
 Event Organizer Marketplace (EOM) is a project for ISYS6169 - Database Systems class.
 
+## Contributors
+
+2201731106 - Jeremy Leonardo
+2201734404 - Gabriel Aldi
+2201829666 - Aprishiela Hartono Putri
+2201768626 - Juan Jonhart Jonathan
+2201829943 - Reyhan Satriya
+
 ## Made With 
 
 Made with Laravel framework, Bootstrap, and jQuery.
