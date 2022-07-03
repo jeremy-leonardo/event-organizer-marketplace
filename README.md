@@ -8,6 +8,14 @@ We developed a website to connect Event vendor and their customers, complete wit
 
 The website used Laravel, Bootstrap, jQuery, and MySQL for development. We also used a style template from Colorlib to speed up the process. The style template was converted to comply with Laravel blade templating.
 
+
+## Screenshots
+
+![home](.screenshots/home.png?raw=true "home")<br>
+![packages](.screenshots/packages.png?raw=true "packages")<br>
+![booking-detail](.screenshots/booking-detail.png?raw=true "booking-detail")<br>
+<img src=".screenshots/home-mobile.png" width="200px"/>
+
 ## Contributors
 
 - 2201731106 - Jeremy Leonardo
